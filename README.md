@@ -12,3 +12,7 @@ library("devtools")
 ~~~{r}
 install_github("exoplanetX/greyforecasting")
 ~~~
+之后，以工具包方式正常加载之后便可以使用了
+~~~{r}
+library(greyforecasting)
+~~~
