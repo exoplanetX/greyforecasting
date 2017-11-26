@@ -1,8 +1,8 @@
-gmodel<-function(y,x,term=1){
+gmodel<-function(y,x=names(y),term=1){
   names(y)<-x
   background<-function(y){
     y1<-cumsum(y)
-    (y1[1:(length(y)-1)]+y1[2:length(y)])/2
+    (y1[2:length(y)]+y1[1:(length(y)-1)]) / 2
   }
   gmname<-"GM(1,1)"
   forecasts<-NA
