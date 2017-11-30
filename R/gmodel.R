@@ -1,5 +1,5 @@
-gmodel<-function(y,x=names(y),term=1){
-  names(y)<-x
+gmodel<-function(y,seqname=names(y),term=1){
+  names(y)<-seqname
   background<-function(y){
     y1<-cumsum(y)
     (y1[2:length(y)]+y1[1:(length(y)-1)]) / 2
@@ -11,7 +11,7 @@ gmodel<-function(y,x=names(y),term=1){
   a<-NA
   b<-NA
   errors<-rep(0,length(y))
-  names(errors)<-x
+  names(errors)<-seqname
   f_errors<-NA
   list(gmname=gmname,original=y,background=background,a=a,b=b,
        response=response,simulation=simulation,term=term,forecasts=forecasts,

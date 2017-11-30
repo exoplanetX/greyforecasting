@@ -1,4 +1,6 @@
-#' jhygfjhg
+#' combine multi-graphs based on matrix "layoutset"
+#' matrix "layoutset" may consist of dimensions or facets sequences
+#'
 
 
 combine<-function(layoutset,...){
@@ -6,7 +8,7 @@ combine<-function(layoutset,...){
   n<-length(graphset)
   for(i in 1:n){
     if(!is.function(graphset[[i]])){
-      return("input element must be function")
+      return("input element must be graphic function for grey modeling")
     }
   }
   if(is.vector(layoutset)){
