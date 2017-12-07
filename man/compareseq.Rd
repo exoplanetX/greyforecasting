@@ -2,12 +2,14 @@
 % Please edit documentation in R/compareseq.r
 \name{compareseq}
 \alias{compareseq}
-\title{根据数据的名称识别比较
-比较两列序列相同名称的数据的绝对误差ae，相对误差pae}
+\title{compare errors according to data point's name
+absolute errors:ae
+percentage absolute errors:pae}
 \usage{
 compareseq(y1, y2)
 }
 \description{
-根据数据的名称识别比较
-比较两列序列相同名称的数据的绝对误差ae，相对误差pae
+compare errors according to data point's name
+absolute errors:ae
+percentage absolute errors:pae
 }

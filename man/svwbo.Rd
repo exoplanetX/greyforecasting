@@ -2,16 +2,18 @@
 % Please edit documentation in R/swvbo.r
 \name{svwbo}
 \alias{svwbo}
-\title{平滑变权缓冲算子
-y:原始数据 alpha:变权权重
-调用格式：y<-svwbo(y,alpha=0.5)
-默认alpha=0.5}
+\title{smooth buffer operator with variable weight
+y:original data
+alpha:weight
+format:y<-svwbo(y,alpha=0.5)
+defaut alpha=0.5}
 \usage{
 svwbo(y, alpha = 0.5)
 }
 \description{
-平滑变权缓冲算子
-y:原始数据 alpha:变权权重
-调用格式：y<-svwbo(y,alpha=0.5)
-默认alpha=0.5
+smooth buffer operator with variable weight
+y:original data
+alpha:weight
+format:y<-svwbo(y,alpha=0.5)
+defaut alpha=0.5
 }

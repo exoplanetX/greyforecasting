@@ -2,10 +2,10 @@
 % Please edit documentation in R/operator.R
 \name{operator}
 \alias{operator}
-\title{算数平均缓冲算子，经典缓冲算子}
+\title{classical buffer operator}
 \usage{
 operator(y, r)
 }
 \description{
-算数平均缓冲算子，经典缓冲算子
+classical buffer operator
 }

@@ -1,6 +1,6 @@
-#' GM(1,1)模型完整处理过程
-#' 默认返回1期预测值，即term=1
-#' 修改pattern="model"，则返回包含所有参数的模型数据集
+#' a integral GM(1,1) process using the tool functions
+#' defaut forecasting term is 1, that is term=1
+#' return a integral modelset when pattern="model"
 gmprocess<-function(y,term=1,pattern="forecast"){
   gdata<-gmodel(y,term)
   gdata<-gm(gdata)

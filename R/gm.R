@@ -1,6 +1,6 @@
-#' 计算GM预测模型中的参数
-#' 生成拟合值、预测值以及中间过程数据
-#' 格式：gdata<-gm(gdata)
+#' Evaluate paramters of GM model
+#' generate background formula, response formula and forecast values
+#' formate: gdata<-gm(gdata)
 gm<- function(gdata){
   n=length(gdata$original)
   z<- -gdata$background(gdata$original)

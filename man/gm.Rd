@@ -2,14 +2,14 @@
 % Please edit documentation in R/gm.r
 \name{gm}
 \alias{gm}
-\title{计算GM预测模型中的参数
-生成拟合值、预测值以及中间过程数据
-格式：gdata<-gm(gdata)}
+\title{Evaluate paramters of GM model
+generate background formula, response formula and forecast values
+formate: gdata<-gm(gdata)}
 \usage{
 gm(gdata)
 }
 \description{
-计算GM预测模型中的参数
-生成拟合值、预测值以及中间过程数据
-格式：gdata<-gm(gdata)
+Evaluate paramters of GM model
+generate background formula, response formula and forecast values
+formate: gdata<-gm(gdata)
 }

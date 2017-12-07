@@ -4,7 +4,7 @@
 \alias{demo.agrm}
 \title{滚动缓冲灰色模型计算过程}
 \usage{
-demo.agrm()
+demo.agrm(y, x = names(y))
 }
 \description{
 滚动缓冲灰色模型计算过程

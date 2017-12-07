@@ -1,5 +1,6 @@
-#' 根据数据的名称识别比较
-#' 比较两列序列相同名称的数据的绝对误差ae，相对误差pae
+#' compare errors according to data point's name
+#' absolute errors:ae
+#' percentage absolute errors:pae
 compareseq<-function(y1,y2){
   #if(is.na(names(y1))){return("the first argument'names contains NA")}
   s=1

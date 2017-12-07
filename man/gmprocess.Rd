@@ -2,14 +2,14 @@
 % Please edit documentation in R/gmprocess.r
 \name{gmprocess}
 \alias{gmprocess}
-\title{GM(1,1)模型完整处理过程
-默认返回1期预测值，即term=1
-修改pattern="model"，则返回包含所有参数的模型数据集}
+\title{a integral GM(1,1) process using the tool functions
+defaut forecasting term is 1, that is term=1
+return a integral modelset when pattern="model"}
 \usage{
 gmprocess(y, term = 1, pattern = "forecast")
 }
 \description{
-GM(1,1)模型完整处理过程
-默认返回1期预测值，即term=1
-修改pattern="model"，则返回包含所有参数的模型数据集
+a integral GM(1,1) process using the tool functions
+defaut forecasting term is 1, that is term=1
+return a integral modelset when pattern="model"
 }

@@ -1,4 +1,4 @@
-#' 算数平均缓冲算子，经典缓冲算子
+#' classical buffer operator
 #'
 
 operator<- function(y,r){
