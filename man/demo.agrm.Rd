@@ -2,10 +2,10 @@
 % Please edit documentation in R/agrm.r
 \name{demo.agrm}
 \alias{demo.agrm}
-\title{滚动缓冲灰色模型计算过程}
+\title{buffered grey rolling model}
 \usage{
 demo.agrm(y, x = names(y))
 }
 \description{
-滚动缓冲灰色模型计算过程
+buffered grey rolling model
 }

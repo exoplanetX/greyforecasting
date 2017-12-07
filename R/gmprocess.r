@@ -7,7 +7,7 @@ gmprocess<-function(y,term=1,pattern="forecast"){
   if(pattern=="forecast"){
     return(gdata$forecasts)
   }
-  if(patter=="model"){
+  if(pattern=="model"){
     return(gdata)
   }
 }

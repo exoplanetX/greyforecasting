@@ -1,4 +1,4 @@
-#' 滚动缓冲灰色模型计算过程
+#' buffered grey rolling model
 #'
 demo.agrm <- function(y,x=names(y)){
   names(y)<-x
