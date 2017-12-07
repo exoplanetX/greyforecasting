@@ -1,5 +1,5 @@
 
-# greyforecasting：欢迎丁松同学参加内测
+# greyforecasting
 
 灰色预测工具包开发
 ## 工具加载方法
