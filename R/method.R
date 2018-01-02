@@ -11,7 +11,12 @@ print.greyforecasting <- function(x){
 }
 
 plot.greyforecasting <- function(x){
-
+  ymax <- max(max(x$original),max(x$simulation))
+  ymin <- min(min(x$original),min(x$simulation))
+  xdimo <- as.numeric(names(x$original))
+  xdims <- as.numeric(names(x$simulation))
+  plot(xdimo,x$original,ylim = c(ymin*0.9,ymax*1.1),pch=1,col="blue",type="b")
+  points(xdims,x$simulation,pch=2,col="red",type="b")
 }
 
 summary.greyforecasting <- function(x){
