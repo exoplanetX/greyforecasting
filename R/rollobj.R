@@ -1,4 +1,4 @@
-roll <- function(y,rollterm=3,piece=4,stepsize=1){
+roll <- function(y,present="y",rollterm=3,piece=4,stepsize=1){
   n <- length(y)
   rollnumber<-(n-piece+1)/stepsize
   x<-as.numeric(names(y))
@@ -30,6 +30,7 @@ roll <- function(y,rollterm=3,piece=4,stepsize=1){
 # generating obj
   obj<-list(
     original=y,
+    description=present,
     background=NA,
     parameter=NA,
     response=NA,

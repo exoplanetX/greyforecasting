@@ -15,9 +15,11 @@ plot.greyforecasting <- function(x){
   ymin <- min(min(x$original),min(x$simulation))
   xdimo <- as.numeric(names(x$original))
   xdims <- as.numeric(names(x$simulation))
-  plot(xdimo,x$original,ylim = c(ymin*0.9,ymax*1.1),pch=1,col="blue",type="b")
+  plot(xdimo,x$original,ylim = c(ymin*0.9,ymax*1.1),pch=1,col="blue",type="b",xlab="Year",ylab=x$description)
   points(xdims,x$simulation,pch=2,col="red",type="b")
-  segments(xdimo,x$original,x1=xdims,y1=x$simulation,lty=2,col="red")
+  segments(xdims,x$original[(length(x$original)-length(x$simulation)+1):length(x$original)],x1=xdims,y1=x$simulation,lty=2,col="red")
+  legend("topleft",legend=c("original data","fitted data"),pch=c(1,2),lty=c(1,5),col=c("blue","red"),bty="n")
+
 }
 
 summary.greyforecasting <- function(x){
@@ -40,6 +42,7 @@ summary.greyforecasting <- function(x){
       }
     }
   }
-  data.frame(row.names = varname,ae=ae,pae=pae)
+  print(data.frame(row.names = varname,ae=ae,pae=pae))
+  cat("mean absolute pecentage error is:",mean(pae))
 }
 

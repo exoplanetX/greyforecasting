@@ -1,4 +1,4 @@
-gmobj<-function(y,term=1,seqname=names(y),bg=background,...){
+gmobj<-function(y,present="y",term=1,seqname=names(y),bg=background,...){
   p<- lm(y[2:length(y)]~I(-bg(y)))$coefficients
   names(p)<-c("b","a")
   trf=function(k) ((y[1]-p['b']/p['a'])*(1-exp(p['a']))*exp(-p['a']*(k-1)))
@@ -9,6 +9,7 @@ gmobj<-function(y,term=1,seqname=names(y),bg=background,...){
 
   obj<-list(
     original=y,
+    description=present,
     background=bg,
     parameter=p,
     response=trf,
