@@ -14,7 +14,6 @@ gm.graph<- function(gdata,pattern="fitting"){
     plot(xf,yf,col="red",type="b",
          pch=1,lty=2,xlab=xlabel,
          ylab=ylabel,main=graphname,sub=eq1
-
     )
     points(x,y,type="b",pch=2,lty=1)
     legend("topleft",inset=0.03, c(gdata$gmname,"original"),

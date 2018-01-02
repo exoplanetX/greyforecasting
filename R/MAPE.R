@@ -1,4 +1,4 @@
-mape<- function(ft){
-  error=mean(abs(ft$original-ft$simulation)/ft$original)
+mape<- function(original,simulation){
+  error=mean(abs(original-simulation)/original)
   return(error)
 }
