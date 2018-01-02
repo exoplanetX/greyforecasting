@@ -17,6 +17,7 @@ plot.greyforecasting <- function(x){
   xdims <- as.numeric(names(x$simulation))
   plot(xdimo,x$original,ylim = c(ymin*0.9,ymax*1.1),pch=1,col="blue",type="b")
   points(xdims,x$simulation,pch=2,col="red",type="b")
+  segments(xdimo,x$original,x1=xdims,y1=x$simulation,lty=2,col="red")
 }
 
 summary.greyforecasting <- function(x){
