@@ -1,4 +1,5 @@
-roll <- function(y,present="y",rollterm=3,piece=4,stepsize=1){
+
+roll <- function(y,buff=NA,intensity=0.5,present="y",rollterm=3,piece=4,stepsize=1){
   n <- length(y)
   rollnumber<-(n-piece+1)/stepsize
   x<-as.numeric(names(y))
@@ -11,9 +12,13 @@ roll <- function(y,present="y",rollterm=3,piece=4,stepsize=1){
   }
 
 # training part
-  rollsetf<-unlist(lapply(rollset,operator))
+  if(is.function(buff)){
+    rollsetf<-as.data.frame(lapply(rollset,buff,alpha=intensity))
+  }else{
+    rollsetf=rollset
+  }
+  simulation<-unlist(lapply(rollsetf,gmprocess))
   target<-y[(piece+1):length(y)]
-  simulation<-unlist(lapply(rollset,gmprocess))
   fitness<-mape(target,simulation[1:(length(target))])
   names(simulation) <- c(x[(piece+1):n],x[n]+1)
 
