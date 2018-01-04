@@ -1,3 +1,4 @@
+# not use
 #' Evaluate paramters of GM model
 #' generate background formula, response formula and forecast values
 #' formate: gdata<-gm(gdata)

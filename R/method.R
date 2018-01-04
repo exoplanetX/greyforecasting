@@ -10,18 +10,41 @@ print.greyforecasting <- function(x){
   cat("prediction term:",x$term)
 }
 
-plot.greyforecasting <- function(x){
+coef.greyforecasting <- function(x){
+  cat("parameters a and b are:\n")
+  print(x$parameter)
+}
+
+plot.greyforecasting <- function(x,location="topleft",add=FALSE){
   ymax <- max(max(x$original),max(x$simulation))
   ymin <- min(min(x$original),min(x$simulation))
   xdimo <- as.numeric(names(x$original))
   xdims <- as.numeric(names(x$simulation))
-  plot(xdimo,x$original,ylim = c(ymin*0.9,ymax*1.1),pch=1,col="blue",type="b",xlab="Year",ylab=x$description)
-  points(xdims,x$simulation,pch=2,col="red",type="b")
+  if(add==FALSE){
+    plot(
+    xdimo,x$original,
+    ylim = c(ymin*0.9,ymax*1.1),
+    pch=1,col="blue",type="b",
+    xlab="Year",ylab=x$description
+    )
+  }
+
+  points(
+    xdims,x$simulation,
+    pch=2,col="red",type="b")
   segments(xdims,x$original[(length(x$original)-length(x$simulation)+1):length(x$original)],x1=xdims,y1=x$simulation,lty=2,col="red")
-  legend("topleft",legend=c("original data","fitted data"),pch=c(1,2),lty=c(1,5),col=c("blue","red"),bty="n")
+  legend(location,legend=c("original data","fitted data"),pch=c(1,2),lty=c(1,5),col=c("blue","red"),bty="n")
 
 }
 
+coplot.greyforecasting <- function(...){
+  gmobj <- list(...)
+  for(i in 1:length(gmobj)){
+    if(class(gmobj[i])!="greyforecasting"){
+      stop("each argument should be class greyforecasting,stop in",i)
+    }
+  }
+}
 summary.greyforecasting <- function(x){
   #if(is.na(names(y1))){return("the first argument'names contains NA")}
   y1 <- x$original

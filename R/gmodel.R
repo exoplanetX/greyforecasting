@@ -1,3 +1,4 @@
+# not use
 gmodel<-function(y,seqname=names(y),term=1){
   names(y)<-seqname
   background<-function(y){

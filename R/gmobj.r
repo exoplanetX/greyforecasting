@@ -15,7 +15,8 @@ gmobj<-function(y,present="y",term=1,seqname=names(y),bg=background,...){
     response=trf,
     simulation=ftd,
     term1=term,
-    forecasts=extroplation
+    forecasts=extroplation,
+    mape=mape(y,ftd)
     )
 
   class(obj)<-"greyforecasting"
