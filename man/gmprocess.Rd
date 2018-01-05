@@ -6,7 +6,7 @@
 defaut forecasting term is 1, that is term=1
 return a integral modelset when pattern="model"}
 \usage{
-gmprocess(y, term = 1, pattern = "forecast")
+gmprocess(y, term = 1)
 }
 \description{
 a integral GM(1,1) process using the tool functions

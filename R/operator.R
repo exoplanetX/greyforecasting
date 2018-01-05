@@ -1,11 +1,11 @@
 #' classical buffer operator
 #'
 
-operator<- function(y,r=0.5){
+operator<- function(y,alpha=0.5){
   n<-length(y)
-  if(r<=0) r<-1
-  for(i in 1:r){
-    y<-r*y+(1-r)*y[n]
+  if(alpha<=0) alpha<-1
+  for(i in seq_along(y)){
+    y[i]<-alpha*y[i]+(1-alpha)*y[n]
   }
   y
 }

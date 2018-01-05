@@ -1,18 +1,25 @@
-# not use
-#' Evaluate paramters of GM model
-#' generate background formula, response formula and forecast values
-#' formate: gdata<-gm(gdata)
-gm<- function(gdata){
-  n=length(gdata$original)
-  z<- -gdata$background(gdata$original)
-  parameters<-lm(gdata$original[2:n]~z)
-  gdata$a<-parameters$coefficients[2]
-  gdata$b<-parameters$coefficients[1]
+gm<-function(y,present="y",term=1,seqname=names(y),bg=background,...){
+  p<- lm(y[2:length(y)]~I(-bg(y)))$coefficients
+  names(p)<-c("b","a")
+  trf=function(k) ((y[1]-p['b']/p['a'])*(1-exp(p['a']))*exp(-p['a']*(k-1)))
+  ftd<-trf(1:length(y))
+  ftd[1]<-y[1]
+  names(ftd)<-seqname
+  extroplation<-trf(length(y)+1:term)
 
-  gdata$response<-function(k) ((gdata$original[1]-gdata$b/gdata$a)*(1-exp(gdata$a))*exp(-gdata$a*(k-1)))
-  gdata$simulation=gdata$response(1:n)
+  obj<-list(
+    original=y,
+    description=present,
+    background=bg,
+    parameter=p,
+    response=trf,
+    simulation=ftd,
+    term1=term,
+    forecasts=extroplation,
+    mape=mape(y,ftd)
+    )
 
-  gdata$forecasts <- gdata$response(n+1:gdata$term)
-  gdata$errors<-gdata$simulation-gdata$original
-  return(gdata)
+  class(obj)<-"greyforecasting"
+  obj
 }
+

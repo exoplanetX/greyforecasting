@@ -2,7 +2,5 @@
 #' defaut forecasting term is 1, that is term=1
 #' return a integral modelset when pattern="model"
 gmprocess<-function(y,term=1){
-  gdata<-gmobj(y,term)
-  gdata$forecasts
-
+  gm(y,term)$forecasts
 }
