@@ -4,7 +4,7 @@
 \alias{operator}
 \title{classical buffer operator}
 \usage{
-operator(y, r = 0.5)
+operator(y, alpha = 0.5)
 }
 \description{
 classical buffer operator

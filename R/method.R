@@ -5,8 +5,16 @@ print.greyforecasting <- function(x){
   cat("fitted data<simulation>:\n")
   print(x$simulation)
   cat("forecast data<forecasts>:\n")
-  print(x$forecast)
-  cat("process: parameter a <p['a']> is",x$p['a'],"b <p['b']> is",x$p['b'],"\n")
+  print(x$forecasts)
+  if(is.vector(x$p)){
+    cat("process: parameter a <p['a']> is",x$p['a'],"b <p['b']> is",x$p['b'],"\n")
+  }else{
+    if(is.data.frame(x$p)){
+      cat("parameters in each section:\n")
+      print(x$p)
+    }
+  }
+
   cat("prediction term:",x$term)
 }
 
@@ -21,7 +29,9 @@ plot.greyforecasting <- function(x,location="topleft",add=FALSE){
   xdimo <- as.numeric(names(x$original))
   xdims <- as.numeric(names(x$simulation))
   if(add==FALSE){
-    plot(
+
+  }else{
+    points(
     xdimo,x$original,
     ylim = c(ymin*0.9,ymax*1.1),
     pch=1,col="blue",type="b",
@@ -34,7 +44,16 @@ plot.greyforecasting <- function(x,location="topleft",add=FALSE){
     pch=2,col="red",type="b")
   segments(xdims,x$original[(length(x$original)-length(x$simulation)+1):length(x$original)],x1=xdims,y1=x$simulation,lty=2,col="red")
   legend(location,legend=c("original data","fitted data"),pch=c(1,2),lty=c(1,5),col=c("blue","red"),bty="n")
+#############
+  j<-readline("do you need buffered comparison plot? yes or no")
+  if(j=="yes"){
 
+  }else{
+    if(!(j=="no")){
+      cat("sorry,plot function do not catch your words.")
+    }
+  }
+#############
 }
 
 coplot.greyforecasting <- function(...){
