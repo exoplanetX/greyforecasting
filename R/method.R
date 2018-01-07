@@ -28,7 +28,7 @@ plot.greyforecasting <- function(x,location="topleft",add=FALSE){
     xlab="Year",ylab=x$description
     )
   }
-
+  if(gm(x$original)$parameter['a']>0) location<-"topright"
   points(
     xdims,x$simulation,
     pch=2,col="red",type="b")
