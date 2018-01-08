@@ -1,7 +1,16 @@
 #' classical buffer operator
 #'
+bo.obj <- function(x){
+  obj <-list(
+    data=x,
+    formula=NULL,
+    expression=NULL
+  )
+  class(obj) <- "bo"
+  obj
+}
 
-operator<- function(y,alpha=0.5){
+operator<- function(y,alpha=0.5,is.obj=FALSE){
   if(is.na(alpha)){
     alpha<-0.5
   }else{
@@ -11,11 +20,25 @@ operator<- function(y,alpha=0.5){
     }
   }
   n<-length(y)
-  if(alpha<=0) alpha<-1
-  for(i in seq_along(y)){
-    y[i]<-alpha*y[i]+(1-alpha)*y[n]
+#####obj or process################
+  if(is.obj==TRUE){
+    obj<-bo.obj(y)
+    if(alpha<=0) alpha<-1
+    obj.formula <- function(y,alpha) {
+      for(i in seq_along(y)){
+      y[i]<-alpha*y[i]+(1-alpha)*y[n]
+      }
+    }
+    obj.expression <- substitute(y^(1)(k+1)==(1-a)*x(k-1)+a*x(k) ,list(a=alpha) ) #equation
+    return(obj)
+  }else{
+    for(i in seq_along(y)){
+      y[i]<-alpha*y[i]+(1-alpha)*y[n]
+    }
+    return(y)
   }
-  y
+
+
 }
 
 #' smooth buffer operator with variable weight
