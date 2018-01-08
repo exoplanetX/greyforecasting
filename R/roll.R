@@ -1,4 +1,4 @@
-roll <- function(y,buff=NA,intensity=0.5,present="y",rollterm=3,piece=4,stepsize=1){
+roll <- function(y,buff=NA,intensity=NA,present="y",rollterm=3,piece=4,stepsize=1){
   n <- length(y)
   rollnumber<-(n-piece+1)/stepsize
   x<-as.numeric(names(y))

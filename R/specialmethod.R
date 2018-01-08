@@ -1,5 +1,8 @@
+#'compare and plot the data graph of buffer operator effect
+#'nr: number that displays arrows without
+
 buffplot <- function(x,buff=NULL,alpha=NA,add=FALSE,nr=4){
-  #coerce(buff)
+
   if(is.function(buff)){
     if(is.na(alpha)){
       y<-buff(x)
