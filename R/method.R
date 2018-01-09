@@ -28,7 +28,13 @@ plot.greyforecasting <- function(x,location="topleft",add=FALSE){
   ymin <- min(min(x$original),min(x$simulation))
   xdimo <- as.numeric(names(x$original))
   xdims <- as.numeric(names(x$simulation))
+  if(gm(x$original)$parameter['a']>0) location<-"topright"
   if(add==FALSE){
+    plot(xdimo,x$original,
+      ylim = c(ymin*0.9,ymax*1.1),
+      pch=1,col="blue",type="b",
+      xlab="Year",ylab=x$description
+    )
 
   }else{
     points(
@@ -38,14 +44,15 @@ plot.greyforecasting <- function(x,location="topleft",add=FALSE){
     xlab="Year",ylab=x$description
     )
   }
-  if(gm(x$original)$parameter['a']>0) location<-"topright"
+
   points(
     xdims,x$simulation,
     pch=2,col="red",type="b")
   segments(xdims,x$original[(length(x$original)-length(x$simulation)+1):length(x$original)],x1=xdims,y1=x$simulation,lty=2,col="red")
   legend(location,legend=c("original data","fitted data"),pch=c(1,2),lty=c(1,5),col=c("blue","red"),bty="n")
 #############
-  j<-readline("do you need buffered comparison plot? yes or no")
+  cat("do you need buffered comparison plot?  \n")
+  j<-readline("yes or no : \n")
   if(j=="yes"){
 
   }else{

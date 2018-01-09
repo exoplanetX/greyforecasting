@@ -8,7 +8,7 @@ gm.graph<- function(gdata,pattern="fitting"){
     xf<-c(x,(x[n]+1:gdata$term))
     n=length(y)
     c0<-y[1]-gdata$b/gdata$a
-    eq1<-substitute(widehat(x)(k+1)==c * e^paste(a*k) ,list(c=c0,a=-gdata$a) ) #equation
+    eq1<-substitute(widehat(x)(k+1)==c * e^paste(a*k) ,list(c=c0,a=-gdata$a) )
     options(digits=6)
 
     plot(xf,yf,col="red",type="b",
