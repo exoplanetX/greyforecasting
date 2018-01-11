@@ -24,15 +24,19 @@ coef.greyforecasting <- function(x){
 }
 
 plot.greyforecasting <- function(x,location="topleft",add=FALSE,forecast=FALSE){
-  ymax <- max(max(x$original),max(x$simulation))
-  ymin <- min(min(x$original),min(x$simulation))
+
+
   xdimo <- as.numeric(names(x$original))
   n<-length(x$simulation)
   piece<-length(x$original)-n
   if(forecast==FALSE){
+    ymax <- max(max(x$original),max(x$simulation))
+    ymin <- min(min(x$original),min(x$simulation))
     xdims <- as.numeric(names(x$simulation))
     ydims <- x$simulation
   }else{
+    ymax <- max(max(x$original),max(x$simulation),max(x$forecasts))
+    ymin <- min(min(x$original),min(x$simulation),max(x$forecasts))
     xdims <- c( as.numeric(names(x$simulation)),as.numeric(names(x$forecasts)) )
     ydims <- c( x$simulation, x$forecasts )
   }
@@ -62,7 +66,7 @@ plot.greyforecasting <- function(x,location="topleft",add=FALSE,forecast=FALSE){
   segments(as.numeric(names(x$simulation)),x$original[(length(x$original)-length(x$simulation)+1):length(x$original)],
            x1=as.numeric(names(x$simulation)),y1=x$simulation,lty=2,col="red")
   legend(location,legend=c("original data","fitted data"),pch=c(1,2),lty=c(1,5),col=c("blue","red"),bty="n")
-  if(forecast==TRUE) abline(v=xdimo[piece+n])
+  if(forecast==TRUE) abline(v=xdimo[piece+n]+0.5,lty=5,col="blue")
 #############
   cat("do you need buffered comparison plot?  \n")
   j<-readline("yes or no : \n")
