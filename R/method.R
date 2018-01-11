@@ -23,15 +23,26 @@ coef.greyforecasting <- function(x){
   print(x$parameter)
 }
 
-plot.greyforecasting <- function(x,location="topleft",add=FALSE){
+plot.greyforecasting <- function(x,location="topleft",add=FALSE,forecast=FALSE){
   ymax <- max(max(x$original),max(x$simulation))
   ymin <- min(min(x$original),min(x$simulation))
   xdimo <- as.numeric(names(x$original))
-  xdims <- as.numeric(names(x$simulation))
+  n<-length(x$simulation)
+  piece<-length(x$original)-n
+  if(forecast==FALSE){
+    xdims <- as.numeric(names(x$simulation))
+    ydims <- x$simulation
+  }else{
+    xdims <- c( as.numeric(names(x$simulation)),as.numeric(names(x$forecasts)) )
+    ydims <- c( x$simulation, x$forecasts )
+  }
+  xmax <- max(xdimo,xdims)
+  xmin <- min(xdimo,xdims)
   if(gm(x$original)$parameter['a']>0) location<-"topright"
   if(add==FALSE){
     plot(xdimo,x$original,
       ylim = c(ymin*0.9,ymax*1.1),
+      xlim = c(xmin,xmax),
       pch=1,col="blue",type="b",
       xlab="Year",ylab=x$description
     )
@@ -46,15 +57,17 @@ plot.greyforecasting <- function(x,location="topleft",add=FALSE){
   }
 
   points(
-    xdims,x$simulation,
+    xdims,ydims,
     pch=2,col="red",type="b")
-  segments(xdims,x$original[(length(x$original)-length(x$simulation)+1):length(x$original)],x1=xdims,y1=x$simulation,lty=2,col="red")
+  segments(as.numeric(names(x$simulation)),x$original[(length(x$original)-length(x$simulation)+1):length(x$original)],
+           x1=as.numeric(names(x$simulation)),y1=x$simulation,lty=2,col="red")
   legend(location,legend=c("original data","fitted data"),pch=c(1,2),lty=c(1,5),col=c("blue","red"),bty="n")
+  if(forecast==TRUE) abline(v=xdimo[piece+n])
 #############
   cat("do you need buffered comparison plot?  \n")
   j<-readline("yes or no : \n")
   if(j=="yes"){
-
+    barplot(x$simulation-x$original[piece+1:n],names.arg = xdims[1:n])
   }else{
     if(!(j=="no")){
       cat("sorry,plot function do not catch your words.")

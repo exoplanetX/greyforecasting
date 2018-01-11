@@ -11,7 +11,7 @@ gm<-function(x,present="y",term=1,bg=background,buff=NULL,alpha=NA,...){
   ftd[1]<-y[1]
   names(ftd)<-names(x)
   extroplation<-trf(length(y)+1:term)
-
+  names(extroplation)<-as.numeric(names(y)[length(y)])+1:term
   obj<-list(
     original=x,
     description=present,
@@ -19,7 +19,7 @@ gm<-function(x,present="y",term=1,bg=background,buff=NULL,alpha=NA,...){
     parameter=p,
     response=trf,
     simulation=ftd,
-    term1=term,
+    term=term,
     forecasts=extroplation,
     mape=mape(y,ftd)
     )
