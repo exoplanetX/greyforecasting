@@ -1,10 +1,10 @@
 #' classical buffer operator
 #'
-bo.obj <- function(x){
+bo.obj <- function(x,formula=NULL,expression=NULL){
   obj <-list(
     data=x,
-    formula=NULL,
-    expression=NULL
+    formula=formula,
+    expression=expression
   )
   class(obj) <- "bo"
   obj
@@ -30,6 +30,7 @@ operator<- function(y,alpha=0.5,is.obj=FALSE){
       }
     }
     obj.expression <- substitute(y^(1)(k+1)==(1-a)*x(k-1)+a*x(k) ,list(a=alpha) ) #equation
+    obj <- bo.obj(y,formula=obj.formula,expression=obj.expression)
     return(obj)
   }else{
     for(i in seq_along(y)){

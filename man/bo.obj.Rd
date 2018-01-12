@@ -4,7 +4,7 @@
 \alias{bo.obj}
 \title{classical buffer operator}
 \usage{
-bo.obj(x)
+bo.obj(x, formula = NULL, expression = NULL)
 }
 \description{
 classical buffer operator

@@ -24,8 +24,7 @@ coef.greyforecasting <- function(x){
 }
 
 plot.greyforecasting <- function(x,location="topleft",add=FALSE,forecast=FALSE){
-
-
+######### determine x and y axis range ######
   xdimo <- as.numeric(names(x$original))
   n<-length(x$simulation)
   piece<-length(x$original)-n
@@ -42,7 +41,9 @@ plot.greyforecasting <- function(x,location="topleft",add=FALSE,forecast=FALSE){
   }
   xmax <- max(xdimo,xdims)
   xmin <- min(xdimo,xdims)
-  if(gm(x$original)$parameter['a']>0) location<-"topright"
+######## plotting fitting graph #############
+  if(gm(x$original)$parameter['a']>0) location<-"topright"  #determine legend location
+#------- plot original data -----#
   if(add==FALSE){
     plot(xdimo,x$original,
       ylim = c(ymin*0.9,ymax*1.1),
@@ -59,7 +60,7 @@ plot.greyforecasting <- function(x,location="topleft",add=FALSE,forecast=FALSE){
     xlab="Year",ylab=x$description
     )
   }
-
+#----- plot fitting data -------#
   points(
     xdims,ydims,
     pch=2,col="red",type="b")
@@ -67,7 +68,7 @@ plot.greyforecasting <- function(x,location="topleft",add=FALSE,forecast=FALSE){
            x1=as.numeric(names(x$simulation)),y1=x$simulation,lty=2,col="red")
   legend(location,legend=c("original data","fitted data"),pch=c(1,2),lty=c(1,5),col=c("blue","red"),bty="n")
   if(forecast==TRUE) abline(v=xdimo[piece+n]+0.5,lty=5,col="blue")
-#############
+########### plotting errors graph ###############
   cat("do you need buffered comparison plot?  \n")
   j<-readline("yes or no : \n")
   if(j=="yes"){
@@ -77,7 +78,7 @@ plot.greyforecasting <- function(x,location="topleft",add=FALSE,forecast=FALSE){
       cat("sorry,plot function do not catch your words.")
     }
   }
-#############
+############    end     #########################
 }
 
 coplot.greyforecasting <- function(...){
