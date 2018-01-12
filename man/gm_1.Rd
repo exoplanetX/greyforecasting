@@ -5,7 +5,7 @@
 \title{weighted background gm model and solved by auxillary parameters
 XU Ning, DANG Yao-guo, DING Song. Optimization method of background value in GM(1,1) model based on least error[J]. Control and Decision, 2015,30(12).}
 \usage{
-gm_1(x, present = "y", term = 1, buff = NULL)
+gm_1(x, present = "y", term = 1, buff = NULL, alpha = NA)
 }
 \description{
 weighted background gm model and solved by auxillary parameters
