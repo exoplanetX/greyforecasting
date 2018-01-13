@@ -21,7 +21,7 @@ gm<-function(x,present="y",term=1,bg=background,buff=NULL,alpha=NA,...){
     simulation=ftd,
     term=term,
     forecasts=extroplation,
-    mape=mape(y,ftd)
+    mape.insample=mape(y,ftd)
     )
 
   class(obj)<-"greyforecasting"

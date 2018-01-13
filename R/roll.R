@@ -51,7 +51,7 @@ roll <- function(y,buff=NA,intensity=NA,present="y",rollterm=3,piece=4,stepsize=
     simulation = simulation[1:(rollnumber-1)],
     forecasts=simulation[rollnumber+0:(rollterm-1)],
     term=rollterm,
-    mape=fitness
+    mape.insample=fitness
   )
   class(obj)<-c("greyforecasting")
   return(obj)

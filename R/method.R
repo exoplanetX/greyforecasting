@@ -69,8 +69,9 @@ plot.greyforecasting <- function(x,location="topleft",add=FALSE,forecast=FALSE){
   legend(location,legend=c("original data","fitted data"),pch=c(1,2),lty=c(1,5),col=c("blue","red"),bty="n")
   if(forecast==TRUE) abline(v=xdimo[piece+n]+0.5,lty=5,col="blue")
 ########### plotting errors graph ###############
-  cat("do you need buffered comparison plot?  \n")
-  j<-readline("yes or no : \n")
+  #cat("do you need buffered comparison plot?  \n")
+  #j<-readline("yes or no : \n")
+  j="no"
   if(j=="yes"){
     barplot(x$simulation-x$original[piece+1:n],names.arg = xdims[1:n])
   }else{
@@ -110,6 +111,6 @@ summary.greyforecasting <- function(x){
     }
   }
   print(data.frame(row.names = varname,ae=ae,pae=pae))
-  cat("mean absolute pecentage error is:",mean(pae))
+  cat("mean absolute pecentage error of insample is:",mean(pae))
 }
 
