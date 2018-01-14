@@ -56,7 +56,8 @@ roll <- function(y,ntest=NULL,rollterm=3,model=gm,buff=NA,intensity=NA,present=c
 
   if(rollterm>1){
     for(j in 1:(rollterm-1)){
-      rollsetf[[rollnumber+j]]<-c(rollsetf[[rollnumber+j-1]][2:piece],simulation[rollnumber+j-1])
+      rollsetf[[rollnumber+j]]<-buff(y=c(rollsetf[[rollnumber+j-1]][2:piece],simulation[rollnumber+j-1]),
+                                     alpha=intensity)
       simulation[rollnumber+j]<-gmprocess(rollsetf[[rollnumber+j]])
       names(simulation)[rollnumber+j]<-x[length(x)]+j+1
     }
