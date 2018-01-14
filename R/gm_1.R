@@ -2,27 +2,23 @@
 #'
 #' weighted background gm model and solved by auxillary parameters
 #'
-#' @param x
-#' x: data sequence.
-#' @param present
-#' present: character vector containing xlab and ylab.
-#' @param buff
-#' buff: buffer operator used for original data.
-#' @param alpha
-#' alpha: coefficient in buffer operator if used.
+#' @param x data sequence.
+#' @param present character vector containing xlab and ylab.
+#' @param buff buffer operator used for original data.
+#' @param alpha coefficient in buffer operator if used.
 #' @examples
 #' g<-gm_1(y,term=3)
 #' g2<-gm_1(y,present=c("xlab","ylab"))
 #' @references
 #' XU Ning, DANG Yao-guo, DING Song. Optimization method of background value in GM(1,1) model based on least error[J]. Control and Decision, 2015,30(12).
 
-gm_1 <- function(y,ntest=NA,term=1,present=c(NA,NA),buff=NULL,alpha=NA){
+gm_1 <- function(y,ntest=NULL,term=1,present=c(NA,NA),buff=NULL,alpha=NA){
   if(is.numeric(ntest)) {
     x<-y[1:(length(y)-trunc(ntest))]
     testvalue<-y[(length(x)+1):length(y)]
   }else{
     x<-y
-    testvalue<-NA
+    testvalue<-NULL
   }
   if(length(present)==1){
     present <- c(NA,present)

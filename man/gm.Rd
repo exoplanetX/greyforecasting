@@ -4,19 +4,19 @@
 \alias{gm}
 \title{classic grey forecasting model, GM(1,1)}
 \usage{
-gm(x, term = 1, present = c(NA, NA), bg = background, buff = NULL,
-  alpha = NA, ...)
+gm(y, ntest = NULL, term = 1, present = c(NA, NA), bg = background,
+  buff = NULL, alpha = NA, ...)
 }
 \arguments{
-\item{x}{x: data sequence.}
+\item{present}{character vector containing xlab and ylab.}
 
-\item{present}{present: character vector containing xlab and ylab.}
+\item{bg}{background formula.}
 
-\item{bg}{bg: background formula.}
+\item{buff}{buffer operator used for original data.}
 
-\item{buff}{buff: buffer operator used for original data.}
+\item{alpha}{coefficient in buffer operator if used.}
 
-\item{alpha}{alpha: coefficient in buffer operator if used.}
+\item{x}{data sequence.}
 }
 \description{
 model sequential data with GM(1,1) model

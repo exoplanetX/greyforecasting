@@ -1,9 +1,14 @@
 #' adaptive buffered grey  rolling model
-#' usage:
+#'
+#' generate ABGR model, computation results and its fitting graphes
+#' @param dataset raw data for modelling
+#' @param model unit grey model used in data piece
+#' @param buff buffer operator used to data piece
+#' @param term forecasting term by extroplation
+#' @examples
 #' mymodel(dataset=y,model=gm_1,buff=operator,term=3)
 mymodel<- function(dataset=y,model=gm,buff=operator,term=3){
   y<-dataset
-
   f<- function(r){
     md<-roll(y,model=model,buff=buff,intensity=r,rollterm=term)
     md$mape

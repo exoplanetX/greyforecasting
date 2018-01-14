@@ -4,24 +4,19 @@
 #'
 #' @examples
 #' g<-gm(y)
-#' @param x
-#' x: data sequence.
-#' @param present
-#' present: character vector containing xlab and ylab.
-#' @param bg
-#' bg: background formula.
-#' @param buff
-#' buff: buffer operator used for original data.
-#' @param alpha
-#' alpha: coefficient in buffer operator if used.
+#' @param x data sequence.
+#' @param present character vector containing xlab and ylab.
+#' @param bg background formula.
+#' @param buff buffer operator used for original data.
+#' @param alpha coefficient in buffer operator if used.
 
-gm<-function(y,ntest=NA,term=1,present=c(NA,NA),bg=background,buff=NULL,alpha=NA,...){
+gm<-function(y,ntest=NULL,term=1,present=c(NA,NA),bg=background,buff=NULL,alpha=NA,...){
   if(is.numeric(ntest)) {
     x<-y[1:(length(y)-trunc(ntest))]
     testvalue<-y[(length(x)+1):length(y)]
   }else{
     x<-y
-    testvalue<-NA
+    testvalue<-NULL
   }
 
   if(length(present)==1){

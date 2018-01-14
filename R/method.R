@@ -1,3 +1,4 @@
+#'
 print.greyforecasting <- function(x){
   cat("<grey forecasting model>\n")
   cat("original data:\n")

@@ -2,25 +2,27 @@
 % Please edit documentation in R/roll.R
 \name{roll}
 \alias{roll}
-\title{generate a grey rolling model
-usage:
-r<-roll(y)
-arguments:
-y: data sequence ; model: unit grey model used in each data piece
-buff: the buffer operator function adjusting data piece
-rollterm: forecasting terms by extroplation
-piece: length of data piece ; stepsize: rolling step}
+\title{adaptive buffered grey rolling model}
 \usage{
-roll(y, model = gm, buff = NA, intensity = NA, present = c(NA, NA),
-  rollterm = 3, piece = 4, stepsize = 1)
+roll(y, ntest = NULL, rollterm = 3, model = gm, buff = NA,
+  intensity = NA, present = c(NA, NA), piece = 4, stepsize = 1)
+}
+\arguments{
+\item{y}{data sequence}
+
+\item{rollterm}{forecasting terms by extroplation}
+
+\item{model}{unit grey model used in each data piece}
+
+\item{buff}{the buffer operator function adjusting data piece}
+
+\item{piece}{length of data piece}
+
+\item{stepsize}{rolling step}
 }
 \description{
-generate a grey rolling model
-usage:
+adaptive buffered grey rolling model
+}
+\examples{
 r<-roll(y)
-arguments:
-y: data sequence ; model: unit grey model used in each data piece
-buff: the buffer operator function adjusting data piece
-rollterm: forecasting terms by extroplation
-piece: length of data piece ; stepsize: rolling step
 }

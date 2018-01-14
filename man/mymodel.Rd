@@ -2,14 +2,22 @@
 % Please edit documentation in R/model1.R
 \name{mymodel}
 \alias{mymodel}
-\title{adaptive buffered grey  rolling model
-usage:
-mymodel(dataset=y,model=gm_1,buff=operator,term=3)}
+\title{adaptive buffered grey  rolling model}
 \usage{
 mymodel(dataset = y, model = gm, buff = operator, term = 3)
 }
+\arguments{
+\item{dataset}{raw data for modelling}
+
+\item{model}{unit grey model used in data piece}
+
+\item{buff}{buffer operator used to data piece}
+
+\item{term}{forecasting term by extroplation}
+}
 \description{
-adaptive buffered grey  rolling model
-usage:
+generate ABGR model, computation results and its fitting graphes
+}
+\examples{
 mymodel(dataset=y,model=gm_1,buff=operator,term=3)
 }

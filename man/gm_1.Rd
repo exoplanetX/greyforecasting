@@ -4,16 +4,17 @@
 \alias{gm_1}
 \title{Improved grey forecasting model with optimal background values}
 \usage{
-gm_1(x, present = c(NA, NA), term = 1, buff = NULL, alpha = NA)
+gm_1(y, ntest = NULL, term = 1, present = c(NA, NA), buff = NULL,
+  alpha = NA)
 }
 \arguments{
-\item{x}{x: data sequence.}
+\item{present}{character vector containing xlab and ylab.}
 
-\item{present}{present: character vector containing xlab and ylab.}
+\item{buff}{buffer operator used for original data.}
 
-\item{buff}{buff: buffer operator used for original data.}
+\item{alpha}{coefficient in buffer operator if used.}
 
-\item{alpha}{alpha: coefficient in buffer operator if used.}
+\item{x}{data sequence.}
 }
 \description{
 weighted background gm model and solved by auxillary parameters
