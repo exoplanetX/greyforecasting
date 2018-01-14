@@ -111,25 +111,15 @@ coplot.greyforecasting <- function(...){
 #' summary(g)
 summary.greyforecasting <- function(x){
   #if(is.na(names(y1))){return("the first argument'names contains NA")}
-  y1 <- x$original
-  y2 <- x$simulation
-  s=1
-  varname=c()
-  ae=c()
-  pae=c()
-  n1<-length(y1)
-  n2<-length(y2)
-  for(i in seq_along(y2)){
-    for(j in seq_along(y1)){
-      if(names(y2)[i]==names(y1)[j]){
-        varname[s]=names(y2)[i]
-        ae[s]=abs(y2[i]-y1[j])
-        pae[s]=ae[s]/y1[j]
-        s<-s+1
-      }
-    }
-  }
+  original<-x$original[(length(x$original)-length(x$simulation)+1):length(x$original)]
+  simulation <- x$simulation
+
+  ae=abs(original-simulation)
+  pae=ae/original
+  varname<-names(original)#[(length(x$original)-length(x$simulation)+1):length(x$simulation)]
   print(data.frame(row.names = varname,ae=ae,pae=pae))
-  cat("mean absolute pecentage error of insample is:",mean(pae))
+  test<-abs(x$testvalue-x$forecasts[1:length(x$testvalue)])/x$testvalue
+  cat("MSE in -sample is:",mean(pae),"\n")
+  cat("MSE out-sample is:",test)
 }
 
