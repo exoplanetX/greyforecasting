@@ -17,44 +17,53 @@ print.greyforecasting <- function(x){
 
   cat("prediction term:",x$term)
 }
-
+#' fetch the parameters in grey forecasting object
+#' usage:
+#' g<-gm(y)
+#' coef(g)
 coef.greyforecasting <- function(x){
   cat("parameters a and b are:\n")
   print(x$parameter)
 }
-
+#' generate fitting graph of grey forecasting model
+#' usage:
+#' g<-gm(y)
+#' plot(g)
+#' plot(g,forecast=TRUE)
 plot.greyforecasting <- function(x,location="topleft",add=FALSE,forecast=FALSE){
 ######### determine x and y axis range ######
-  xdimo <- as.numeric(names(x$original))
+
   n<-length(x$simulation)
   piece<-length(x$original)-n
   if(forecast==FALSE){
-    ymax <- max(max(x$original),max(x$simulation))
-    ymin <- min(min(x$original),min(x$simulation))
     xdims <- as.numeric(names(x$simulation))
     ydims <- x$simulation
+    xdimo <- as.numeric(names(x$original))
+    ydimo <- x$original
   }else{
-    ymax <- max(max(x$original),max(x$simulation),max(x$forecasts))
-    ymin <- min(min(x$original),min(x$simulation),max(x$forecasts))
     xdims <- c( as.numeric(names(x$simulation)),as.numeric(names(x$forecasts)) )
     ydims <- c( x$simulation, x$forecasts )
+    xdimo <- c(as.numeric(names(x$original)),as.numeric(names(x$testvalue)))
+    ydimo <- c(x$original,x$testvalue)
   }
+  ymax <- max(ydimo,ydims)
+  ymin <- min(ydimo,ydims)
   xmax <- max(xdimo,xdims)
   xmin <- min(xdimo,xdims)
 ######## plotting fitting graph #############
   if(gm(x$original)$parameter['a']>0) location<-"topright"  #determine legend location
 #------- plot original data -----#
   if(add==FALSE){
-    plot(xdimo,x$original,
+    plot(xdimo,ydimo,
       ylim = c(ymin*0.9,ymax*1.1),
       xlim = c(xmin,xmax),
       pch=1,col="blue",type="b",
-      xlab="Year",ylab=x$description
+      xlab=x$description$xlab,ylab=x$description$ylab
     )
 
   }else{
     points(
-    xdimo,x$original,
+    xdimo,ydimo,
     ylim = c(ymin*0.9,ymax*1.1),
     pch=1,col="blue",type="b",
     xlab="Year",ylab=x$description
@@ -67,7 +76,11 @@ plot.greyforecasting <- function(x,location="topleft",add=FALSE,forecast=FALSE){
   segments(as.numeric(names(x$simulation)),x$original[(length(x$original)-length(x$simulation)+1):length(x$original)],
            x1=as.numeric(names(x$simulation)),y1=x$simulation,lty=2,col="red")
   legend(location,legend=c("original data","fitted data"),pch=c(1,2),lty=c(1,5),col=c("blue","red"),bty="n")
-  if(forecast==TRUE) abline(v=xdimo[piece+n]+0.5,lty=5,col="blue")
+  if(forecast==TRUE){
+    abline(v=xdimo[piece+n]+0.5,lty=5,col="blue")
+    text(xdimo[piece+n]+1.8,ymin,"out-sample",cex=0.9)
+    text(xdimo[piece+n]-0.7,ymin,"in-sample",cex=0.9)
+    }
 ########### plotting errors graph ###############
   #cat("do you need buffered comparison plot?  \n")
   #j<-readline("yes or no : \n")
@@ -90,6 +103,11 @@ coplot.greyforecasting <- function(...){
     }
   }
 }
+
+#' make the summary of greyforecasting object
+#' usage:
+#' g<-gm(y)
+#' summary(g)
 summary.greyforecasting <- function(x){
   #if(is.na(names(y1))){return("the first argument'names contains NA")}
   y1 <- x$original

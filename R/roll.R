@@ -1,4 +1,24 @@
-roll <- function(y,buff=NA,intensity=NA,present="y",rollterm=3,piece=4,stepsize=1){
+#' generate a grey rolling model
+#' usage:
+#' r<-roll(y)
+#' arguments:
+#' y: data sequence ; model: unit grey model used in each data piece
+#' buff: the buffer operator function adjusting data piece
+#' rollterm: forecasting terms by extroplation
+#' piece: length of data piece ; stepsize: rolling step
+roll <- function(y,ntest=NA,rollterm=3,model=gm,buff=NA,intensity=NA,present=c(NA,NA),piece=4,stepsize=1){
+  if(is.numeric(ntest)) {
+    x<-y[1:(length(y)-trunc(ntest))]
+    testvalue<-y[(length(x)+1):length(y)]
+    y<-x
+  }else{
+    testvalue<-NA
+  }
+  if(length(present)==1){
+    present <- c(NA,present)
+  }else{
+    present <- c(present[1],present[2])
+  }
   n <- length(y)
   rollnumber<-(n-piece+1)/stepsize
   x<-as.numeric(names(y))
@@ -16,7 +36,7 @@ roll <- function(y,buff=NA,intensity=NA,present="y",rollterm=3,piece=4,stepsize=
   }else{
     rollsetf=rollset
   }
-  simulation<-unlist(lapply(rollsetf,gmprocess))
+  simulation<-unlist(lapply(rollsetf,gmprocess,model=model))
   param <- lapply(rollsetf,gmprocess,pattern="parameter")
   for(i in 1:length(param)){
     if(i==1){
@@ -44,7 +64,8 @@ roll <- function(y,buff=NA,intensity=NA,present="y",rollterm=3,piece=4,stepsize=
 # generating obj
   obj<-list(
     original=y,
-    description=present,
+    testvalue=testvalue,
+    description=data.frame(xlab=present[1],ylab=present[2]),
     background=NA,
     parameter=paras,
     response=NA,

@@ -1,15 +1,41 @@
-#' weighted background gm model and solved by auxillary parameters
-#' XU Ning, DANG Yao-guo, DING Song. Optimization method of background value in GM(1,1) model based on least error[J]. Control and Decision, 2015,30(12).
+#' Improved grey forecasting model with optimal background values
 #'
-gm_1 <- function(x,present="y",term=1,buff=NULL,alpha=NA){
+#' weighted background gm model and solved by auxillary parameters
+#'
+#' @param x
+#' x: data sequence.
+#' @param present
+#' present: character vector containing xlab and ylab.
+#' @param buff
+#' buff: buffer operator used for original data.
+#' @param alpha
+#' alpha: coefficient in buffer operator if used.
+#' @examples
+#' g<-gm_1(y,term=3)
+#' g2<-gm_1(y,present=c("xlab","ylab"))
+#' @references
+#' XU Ning, DANG Yao-guo, DING Song. Optimization method of background value in GM(1,1) model based on least error[J]. Control and Decision, 2015,30(12).
+
+gm_1 <- function(y,ntest=NA,term=1,present=c(NA,NA),buff=NULL,alpha=NA){
+  if(is.numeric(ntest)) {
+    x<-y[1:(length(y)-trunc(ntest))]
+    testvalue<-y[(length(x)+1):length(y)]
+  }else{
+    x<-y
+    testvalue<-NA
+  }
+  if(length(present)==1){
+    present <- c(NA,present)
+  }else{
+    present <- c(present[1],present[2])
+  }
+
   n<-length(x)
   if(is.function(buff)){
     y<-buff(x,alpha=alpha)
   }else{
     y<-x
   }
-
-
 
   auxillary<- lm(y[2:n]~I(-cumsum(y)[2:n]))$coefficients
   names(auxillary)<-c("b","a")
@@ -22,9 +48,11 @@ gm_1 <- function(x,present="y",term=1,buff=NULL,alpha=NA){
   names(ftd)<-names(y)
   extroplation<-trf(length(y)+1:term)
   names(extroplation)<-as.numeric(names(y)[length(y)])+1:term
+
   obj<-list(
     original=x,
-    description=present,
+    testvalue=testvalue,
+    description=data.frame(xlab=present[1],ylab=present[2]),
     background="Optimal background with theoratical least errors",
     parameter=data.frame(a=a,b=b,alpha=ax,au_a=auxillary['a'],au_b=auxillary['b']),
     response=trf,

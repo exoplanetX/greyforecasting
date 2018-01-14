@@ -1,12 +1,15 @@
 #' a integral GM(1,1) process using the tool functions
 #' defaut forecasting term is 1, that is term=1
 #' return a integral modelset when pattern="model"
-gmprocess<-function(y,pattern="forecast"){
-  term=1
+#' usage:
+#' gmprocess(y)
+#' gmprocess(y,pattern="parameter")
+gmprocess<-function(y,model=gm,term=1,pattern="forecast"){
+  model<-eval(substitute(model))
   if(pattern=="forecast") {
-    return(gm(y,term)$forecasts)
+    return(model(y,term=term)$forecasts)
   }
   if(pattern=="parameter") {
-    return(gm(y,term)$parameter)
+    return(model(y,term=term)$parameter)
   }
 }

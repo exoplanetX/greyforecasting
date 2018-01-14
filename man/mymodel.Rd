@@ -2,10 +2,14 @@
 % Please edit documentation in R/model1.R
 \name{mymodel}
 \alias{mymodel}
-\title{adaptive buffered grey  rolling model}
+\title{adaptive buffered grey  rolling model
+usage:
+mymodel(dataset=y,model=gm_1,buff=operator,term=3)}
 \usage{
-mymodel()
+mymodel(dataset = y, model = gm, buff = operator, term = 3)
 }
 \description{
 adaptive buffered grey  rolling model
+usage:
+mymodel(dataset=y,model=gm_1,buff=operator,term=3)
 }

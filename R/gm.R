@@ -1,4 +1,35 @@
-gm<-function(x,present="y",term=1,bg=background,buff=NULL,alpha=NA,...){
+#' classic grey forecasting model, GM(1,1)
+#'
+#' model sequential data with GM(1,1) model
+#'
+#' @examples
+#' g<-gm(y)
+#' @param x
+#' x: data sequence.
+#' @param present
+#' present: character vector containing xlab and ylab.
+#' @param bg
+#' bg: background formula.
+#' @param buff
+#' buff: buffer operator used for original data.
+#' @param alpha
+#' alpha: coefficient in buffer operator if used.
+
+gm<-function(y,ntest=NA,term=1,present=c(NA,NA),bg=background,buff=NULL,alpha=NA,...){
+  if(is.numeric(ntest)) {
+    x<-y[1:(length(y)-trunc(ntest))]
+    testvalue<-y[(length(x)+1):length(y)]
+  }else{
+    x<-y
+    testvalue<-NA
+  }
+
+  if(length(present)==1){
+    present <- c(NA,present)
+  }else{
+    present <- c(present[1],present[2])
+  }
+
   if(is.function(buff)) {
     y<-buff(x,alpha=alpha)
   }else{
@@ -14,7 +45,8 @@ gm<-function(x,present="y",term=1,bg=background,buff=NULL,alpha=NA,...){
   names(extroplation)<-as.numeric(names(y)[length(y)])+1:term
   obj<-list(
     original=x,
-    description=present,
+    testvalue=testvalue,
+    description=data.frame(xlab=present[1],ylab=present[2]),
     background=bg,
     parameter=p,
     response=trf,

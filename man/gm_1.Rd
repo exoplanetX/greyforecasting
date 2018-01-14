@@ -2,12 +2,26 @@
 % Please edit documentation in R/gm_1.R
 \name{gm_1}
 \alias{gm_1}
-\title{weighted background gm model and solved by auxillary parameters
-XU Ning, DANG Yao-guo, DING Song. Optimization method of background value in GM(1,1) model based on least error[J]. Control and Decision, 2015,30(12).}
+\title{Improved grey forecasting model with optimal background values}
 \usage{
-gm_1(x, present = "y", term = 1, buff = NULL, alpha = NA)
+gm_1(x, present = c(NA, NA), term = 1, buff = NULL, alpha = NA)
+}
+\arguments{
+\item{x}{x: data sequence.}
+
+\item{present}{present: character vector containing xlab and ylab.}
+
+\item{buff}{buff: buffer operator used for original data.}
+
+\item{alpha}{alpha: coefficient in buffer operator if used.}
 }
 \description{
 weighted background gm model and solved by auxillary parameters
+}
+\examples{
+g<-gm_1(y,term=3)
+g2<-gm_1(y,present=c("xlab","ylab"))
+}
+\references{
 XU Ning, DANG Yao-guo, DING Song. Optimization method of background value in GM(1,1) model based on least error[J]. Control and Decision, 2015,30(12).
 }
