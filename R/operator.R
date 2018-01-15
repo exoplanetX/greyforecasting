@@ -43,10 +43,12 @@ operator<- function(y,alpha=0.5,is.obj=FALSE){
 }
 
 #' smooth buffer operator with variable weight
-#' y:original data
-#' alpha:weight
-#' format:y<-svwbo(y,alpha=0.5)
-#' defaut alpha=0.5
+#'
+#' smooth buffer operator with variable weight
+#' @param y original data
+#' @param alpha weight,alpha=0.5
+#' @examples format:y<-svwbo(y,alpha=0.5)
+#'
 svwbo<-function(y,alpha=0.5){
   if(is.na(alpha)){
     alpha<-0.5

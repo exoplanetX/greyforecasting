@@ -7,7 +7,7 @@
 #' @param rollterm forecasting terms by extroplation
 #' @param piece length of data piece
 #' @param stepsize  rolling step
-roll <- function(y,ntest=NULL,rollterm=3,model=gm,buff=NA,intensity=NA,present=c(NA,NA),piece=4,stepsize=1){
+roll <- function(y,ntest=NULL,rollterm=1,model=gm,buff=NA,intensity=NA,present=c(NA,NA),piece=4,stepsize=1){
   if(is.numeric(ntest)) {
     x<-y[1:(length(y)-trunc(ntest))]
     testvalue<-y[(length(x)+1):length(y)]

@@ -4,7 +4,8 @@
 \alias{mymodel}
 \title{adaptive buffered grey  rolling model}
 \usage{
-mymodel(dataset = y, model = gm, buff = operator, term = 3)
+mymodel(dataset = y, ntest = NULL, model = gm, buff = operator,
+  term = 3)
 }
 \arguments{
 \item{dataset}{raw data for modelling}
