@@ -5,7 +5,7 @@
 \title{adaptive buffered grey  rolling model}
 \usage{
 mymodel(dataset = y, ntest = NULL, model = gm, buff = operator,
-  term = 3)
+  term = 1)
 }
 \arguments{
 \item{dataset}{raw data for modelling}
