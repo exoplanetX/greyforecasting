@@ -1,7 +1,8 @@
 
 # greyforecasting
 
-灰色预测工具包开发
+灰色预测工具包开发 
+
 ## 工具加载方法
 推荐使用工具：
 - R语言[https://cloud.r-project.org/](https://cloud.r-project.org/ "R语言")
