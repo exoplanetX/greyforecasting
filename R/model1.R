@@ -7,7 +7,7 @@
 #' @param term forecasting term by extroplation
 #' @examples
 #' mymodel(dataset=y,model=gm_1,buff=operator,term=3)
-mymodel<- function(dataset=y,ntest=NULL,model=gm,buff=operator,term=1){
+abgr<- function(dataset=y,ntest=NULL,model=gm,buff=operator,term=1){
   y<-dataset
   f<- function(r){
     md<-roll(y,ntest=ntest,model=model,buff=buff,intensity=r,rollterm=term)
