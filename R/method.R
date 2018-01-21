@@ -79,7 +79,7 @@ plot.greyforecasting <- function(x,location="topleft",add=FALSE,forecast=FALSE){
   legend(location,legend=c("original data","fitted data"),pch=c(1,2),lty=c(1,5),col=c("blue","red"),bty="n")
   if(forecast==TRUE){
     abline(v=xdimo[piece+n]+0.5,lty=5,col="blue")
-    text(xdimo[piece+n]+1.8,ymin,"out-sample",cex=0.9)
+    #text(xdimo[piece+n]+1.8,ymin,"out-sample",cex=0.9)
     text(xdimo[piece+n]-0.7,ymin,"in-sample",cex=0.9)
     }
 ########### plotting errors graph ###############
