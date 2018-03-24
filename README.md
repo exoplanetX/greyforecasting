@@ -146,7 +146,7 @@ abgr是在roll基础上进行的二次开发，参数与roll函数参数基本�
 
 ~~~{r}
 model3<-gm(y,ntest=1,term=1) #建立GM(1,1)模型
-model3 #直接打出保持模型的变量名，简要输出模型结果和参数值
+model3 #直接打出保存模型的变量名，简要输出模型结果和参数值
 summary(model3) #查看模型model3的计算结果
 plot(model3) #做出model3的拟合图形
 coef(model3) #提取model3的参数估计值
@@ -163,4 +163,5 @@ help(plot.greyforecasting)
 ~~~ 
 
 ### 未完待续......
-
+The package now is  a brief tool in R, and plans to embrace all the algorithms of grey forecast theory.
+Any problems please contact nuaa_xuning@163.com 
