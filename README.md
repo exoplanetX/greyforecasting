@@ -134,7 +134,7 @@ model1<-roll(y,rollterm=3,buff=operator,intensity=0.6)
 ~~~
 在原滚动算法基础上，对数据切片加入平均弱化缓冲算子作用，调节系数为0.6。 
 
-1.  自适应缓冲滚动预测算法 
+2.  自适应缓冲滚动预测算法 
 在roll函数基础上，选取缓冲算子最优调节权重，实现对序列趋势自适应的预测算法。 
 ~~~{r} 
 model2<-abgr(y,ntest=1,model=gm,buff=svwbo，term=1)
