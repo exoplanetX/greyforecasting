@@ -104,9 +104,63 @@ plot(g,forecast=TRUE) #拟合图中包含预测部分
 3. 缓冲算子
 缓冲算子作为函数可以单独调用，但主要是用于建模中作为参数调用，直接施加于模型的预处理部分，如
 
-~~~{r}
+~~~{r} 
 g<- gm(y,buff=operator,alpha=0.6) # 在gm模型中调用经典弱化缓冲算子，作用系数为0.6(默认为0.5)
+~~~ 
+
+## 滚动建模机制 
+~~~{r} 
+model1<-roll(y,rollterm=3)
+~~~ 
+
+对序列y进行滚动建模，默认采用四数据为一个数据切片逐步滚动方式，模型采用GM(1,1)模型，生成3个外推预测值。roll函数返回值也是greyforecasting类，记录了整个算法的计算结果. 
+roll函数的主要参数：
+- y：建模序列 
+- ntest: 序列后n位设置为样本外测试数据 
+- rollterm： 滚动外推预测期数 
+- model:用于对数据切片建模的基本模型
+- buff: 对每个切片数据段上使用的缓冲算子，默认为NA 
+- intensity: 缓冲算子的可变权重，默认为各缓冲算子的默认权值
+
+具体参数请查阅 
+~~~{r}
+help(roll)
+~~~ 
+## 加入缓冲调节的滚动算法 
+1.  roll函数调入缓冲算子
+roll函数可以调入缓冲算子对数据切片进行调节，具体方法如下： 
+~~~{r}
+model1<-roll(y,rollterm=3,buff=operator,intensity=0.6)
 ~~~
+在原滚动算法基础上，对数据切片加入平均弱化缓冲算子作用，调节系数为0.6。 
+
+1.  自适应缓冲滚动预测算法 
+在roll函数基础上，选取缓冲算子最优调节权重，实现对序列趋势自适应的预测算法。 
+~~~{r} 
+model2<-abgr(y,ntest=1,model=gm,buff=svwbo，term=1)
+~~~ 
+abgr是在roll基础上进行的二次开发，参数与roll函数参数基本相同，其中外推期数term对应roll中的rollterm。
+
+## 模型结果的输出 
+该工具包代码采用S3类编写，即所有计算输出均与R语言建模方法的查看保持一致。例如:
+
+~~~{r}
+model3<-gm(y,ntest=1,term=1) #建立GM(1,1)模型
+model3 #直接打出保持模型的变量名，简要输出模型结果和参数值
+summary(model3) #查看模型model3的计算结果
+plot(model3) #做出model3的拟合图形
+coef(model3) #提取model3的参数估计值
+~~~
+
+其中plot作图函数参数较多，列举几个重要参数： 
+~~~{r} 
+model3<-gm(y,ntest=1,term=1) #建立GM(1,1)模型，末尾预留1期测试数据，预测1期
+plot(model3,forecast=TRUE) #做出model3拟合图，图中包含预测部分
+~~~ 
+其他参数请参考
+~~~{r}
+help(plot.greyforecasting) 
+~~~ 
 
 ### 未完待续......
 
