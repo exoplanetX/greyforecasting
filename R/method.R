@@ -42,7 +42,7 @@ plot.greyforecasting <- function(x,location="topleft",add=FALSE,forecast=FALSE){
     xdimo <- as.numeric(names(x$original))
     ydimo <- x$original
   }else{
-    xdims <- c( as.numeric(names(x$simulation)),as.numeric(names(x$forecasts)) )
+    xdims <- c(as.numeric(names(x$simulation)),as.numeric(names(x$forecast)))
     ydims <- c( x$simulation, x$forecasts )
     xdimo <- c(as.numeric(names(x$original)),as.numeric(names(x$testvalue)))
     ydimo <- c(x$original,x$testvalue)
@@ -74,8 +74,8 @@ plot.greyforecasting <- function(x,location="topleft",add=FALSE,forecast=FALSE){
   points(
     xdims,ydims,
     pch=2,col="red",type="b")
-  segments(as.numeric(names(x$simulation)),x$original[(length(x$original)-length(x$simulation)+1):length(x$original)],
-           x1=as.numeric(names(x$simulation)),y1=x$simulation,lty=2,col="red")
+  #segments(length(x$simulation),x$original[(length(x$original)-length(x$simulation)+1):length(x$original)],
+          # x1=length(x$simulation),y1=x$simulation,lty=2,col="red")
   legend(location,legend=c("original data","fitted data"),pch=c(1,2),lty=c(1,5),col=c("blue","red"),bty="n")
   if(forecast==TRUE){
     abline(v=xdimo[piece+n]+0.5,lty=5,col="blue")

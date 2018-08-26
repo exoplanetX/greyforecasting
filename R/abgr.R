@@ -24,7 +24,7 @@ abgr<- function(y=y,ntest=NULL,model=gm,buff=operator,term=1){
   text(0.82,0.042,"optimal point")
   dev.new()
   plot(g,forecast = T)
-  return(summary(g))
+  return(g)
 
 }
 
