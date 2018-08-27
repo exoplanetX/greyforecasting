@@ -9,15 +9,11 @@
 #' @param stepsize  rolling step
 roll <- function(y,ntest=NULL,rollterm=1,model=gm,buff=NA,intensity=NA,present=c(NA,NA),piece=4,stepsize=1){
   if(is.null(names(y))){
-    yname<-1:length(y)
-  }else{
-    yname<-as.numeric(names(y))
+    names(y)<-1:length(y)
   }
   if(is.numeric(ntest)) {
     x<-y[1:(length(y)-trunc(ntest))]
-    names(x)<-yname[1:(length(y)-trunc(ntest))]
     testvalue<-y[(length(x)+1):length(y)]
-    names(testvalue)<-yname[(length(x)+1):length(y)]
     y<-x
   }else{
     testvalue<-NULL

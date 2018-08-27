@@ -11,6 +11,9 @@
 #' g2<-gm_1(y,present=c("xlab","ylab"))
 
 gm_2 <- function(y,ntest=NULL,term=1,present=c(NA,NA),buff=NULL,alpha=NA){
+  if(is.null(names(y))){
+    names(y)<-1:length(y)
+  }
   if(is.numeric(ntest)) {
     x<-y[1:(length(y)-trunc(ntest))]
     testvalue<-y[(length(x)+1):length(y)]

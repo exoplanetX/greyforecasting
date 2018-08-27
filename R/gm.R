@@ -11,6 +11,9 @@
 #' @param alpha coefficient in buffer operator if used.
 
 gm<-function(y,ntest=NULL,term=1,present=c(NA,NA),bg=background,buff=NULL,alpha=NA,...){
+  if(is.null(names(y))){
+    names(y)<-1:length(y)
+  }
   if(is.numeric(ntest)) {
     x<-y[1:(length(y)-trunc(ntest))]
     testvalue<-y[(length(x)+1):length(y)]

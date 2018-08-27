@@ -13,6 +13,9 @@
 #' XU Ning, DANG Yao-guo, DING Song. Optimization method of background value in GM(1,1) model based on least error[J]. Control and Decision, 2015,30(12).
 
 gm_1 <- function(y,ntest=NULL,term=1,present=c(NA,NA),buff=NULL,alpha=NA){
+  if(is.null(names(y))){
+    names(y)<-1:length(y)
+  }
   if(is.numeric(ntest)) {
     x<-y[1:(length(y)-trunc(ntest))]
     testvalue<-y[(length(x)+1):length(y)]
