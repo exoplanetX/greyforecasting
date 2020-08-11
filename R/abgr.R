@@ -19,6 +19,7 @@ abgr<- function(y=y,ntest=NULL,model=gm,buff=operator,term=1){
   for(i in 1:99){
     t[i]<-f(i*0.01)
   }
+
   plot(0.01*1:99,t,type="l",xlab = "buffer operator coefficient:r",ylab = "fitting accuracy")
   arrows(0.82,0.04,r$minimum,r$objective,angle = 20)
   text(0.82,0.042,"optimal point")
