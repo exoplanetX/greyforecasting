@@ -33,7 +33,6 @@ coef.greyforecasting <- function(x){
 #' plot(g,forecast=TRUE)
 plot.greyforecasting <- function(x,location="topleft",add=FALSE,forecast=FALSE){
 ######### determine x and y axis range ######
-
   n<-length(x$simulation)
   piece<-length(x$original)-n
   if(forecast==FALSE){
@@ -52,7 +51,7 @@ plot.greyforecasting <- function(x,location="topleft",add=FALSE,forecast=FALSE){
   xmax <- max(xdimo,xdims)
   xmin <- min(xdimo,xdims)
 ######## plotting fitting graph #############
-  if(gm(x$original)$parameter['a']>0) location<-"topright"  #determine legend location
+  if(x$parameter['a']>0) location<-"topright"  #determine legend location
 #------- plot original data -----#
   if(add==FALSE){
     plot(xdimo,ydimo,
@@ -61,7 +60,6 @@ plot.greyforecasting <- function(x,location="topleft",add=FALSE,forecast=FALSE){
       pch=1,col="blue",type="b",
       xlab=x$description$xlab,ylab=x$description$ylab
     )
-
   }else{
     points(
     xdimo,ydimo,
