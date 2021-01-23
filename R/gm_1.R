@@ -1,7 +1,7 @@
 #' Improved grey forecasting model with optimal background values
 #'
 #' weighted background gm model and solved by auxillary parameters
-#'
+#' @export
 #' @param x data sequence.
 #' @param present character vector containing xlab and ylab.
 #' @param buff buffer operator used for original data.

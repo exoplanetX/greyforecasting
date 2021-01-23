@@ -1,3 +1,4 @@
+#' @export
 svr<-function(y){
   require(e1071)
   ds=data.frame(y=y,t=1:length(y))

@@ -4,8 +4,7 @@
 \alias{gm_1}
 \title{Improved grey forecasting model with optimal background values}
 \usage{
-gm_1(y, ntest = NULL, term = 1, present = c(NA, NA), buff = NULL,
-  alpha = NA)
+gm_1(y, ntest = NULL, term = 1, present = c(NA, NA), buff = NULL, alpha = NA)
 }
 \arguments{
 \item{present}{character vector containing xlab and ylab.}

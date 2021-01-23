@@ -1,6 +1,7 @@
 #' adaptive buffered grey rolling model
 #' @examples
 #' r<-roll(y)
+#' @export
 #' @param y data sequence
 #' @param model unit grey model used in each data piece
 #' @param buff the buffer operator function adjusting data piece

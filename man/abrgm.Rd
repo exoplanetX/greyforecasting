@@ -16,7 +16,7 @@ abrgm(y = y, ntest = NULL, model = gm, buff = operator, term = 1)
 \item{term}{forecasting term by extroplation}
 }
 \description{
-generate ABGR model, computation results and its fitting graphes
+adaptive buffered grey  rolling model
 }
 \examples{
 mymodel(dataset=y,model=gm_1,buff=operator,term=3)

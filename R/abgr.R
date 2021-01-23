@@ -1,6 +1,7 @@
 #' adaptive buffered grey  rolling model
 #'
 #' generate ABGR model, computation results and its fitting graphes
+#' @export
 #' @param y raw data for modelling
 #' @param model unit grey model used in data piece
 #' @param buff buffer operator used to data piece

@@ -4,6 +4,7 @@
 #' usage:
 #' gmprocess(y)
 #' gmprocess(y,pattern="parameter")
+#' @export
 gmprocess<-function(y,model=gm,term=1,pattern="forecast"){
   model<-eval(substitute(model))
   if(pattern=="forecast") {

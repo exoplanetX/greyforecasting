@@ -4,8 +4,7 @@
 \alias{gm_2}
 \title{optimal gm model with background and response formula}
 \usage{
-gm_2(y, ntest = NULL, term = 1, present = c(NA, NA), buff = NULL,
-  alpha = NA)
+gm_2(y, ntest = NULL, term = 1, present = c(NA, NA), buff = NULL, alpha = NA)
 }
 \arguments{
 \item{present}{character vector containing xlab and ylab.}

@@ -1,7 +1,7 @@
 #' classic grey forecasting model, GM(1,1)
 #'
 #' model sequential data with GM(1,1) model
-#'
+#' @export
 #' @examples
 #' g<-gm(y)
 #' @param x data sequence.

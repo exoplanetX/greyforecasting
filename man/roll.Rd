@@ -4,8 +4,17 @@
 \alias{roll}
 \title{adaptive buffered grey rolling model}
 \usage{
-roll(y, ntest = NULL, rollterm = 1, model = gm, buff = NA,
-  intensity = NA, present = c(NA, NA), piece = 4, stepsize = 1)
+roll(
+  y,
+  ntest = NULL,
+  rollterm = 1,
+  model = gm,
+  buff = NA,
+  intensity = NA,
+  present = c(NA, NA),
+  piece = 4,
+  stepsize = 1
+)
 }
 \arguments{
 \item{y}{data sequence}
