@@ -2,20 +2,26 @@
 % Please edit documentation in R/gmprocess.r
 \name{gmprocess}
 \alias{gmprocess}
-\title{a integral GM(1,1) process using the tool functions
-defaut forecasting term is 1, that is term=1
-return a integral modelset when pattern="model"
-usage:
-gmprocess(y)
-gmprocess(y,pattern="parameter")}
+\title{a integral GM(1,1) process using the tool functions}
 \usage{
 gmprocess(y, model = gm, term = 1, pattern = "forecast")
 }
+\arguments{
+\item{y}{case data}
+
+\item{model}{grey model object}
+
+\item{term}{defaut forecasting term is 1, that is term=1}
+
+\item{pattern}{}
+}
+\value{
+a integral modelset when pattern="model"
+}
 \description{
 a integral GM(1,1) process using the tool functions
-defaut forecasting term is 1, that is term=1
-return a integral modelset when pattern="model"
-usage:
+}
+\examples{
 gmprocess(y)
 gmprocess(y,pattern="parameter")
 }

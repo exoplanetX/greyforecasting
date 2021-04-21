@@ -2,16 +2,17 @@
 % Please edit documentation in R/summary.R
 \name{summary.greyforecasting}
 \alias{summary.greyforecasting}
-\title{make the summary of greyforecasting object
-usage:
-g<-gm(y)
-summary(g)}
+\title{Make the summary of greyforecasting object}
 \usage{
 \method{summary}{greyforecasting}(x)
 }
+\arguments{
+\item{x}{a greyforecasting object}
+}
 \description{
-make the summary of greyforecasting object
-usage:
+Make the summary of greyforecasting object
+}
+\examples{
 g<-gm(y)
 summary(g)
 }

@@ -30,5 +30,5 @@ gm(
 model sequential data with GM(1,1) model
 }
 \examples{
-g<-gm(y)
+g <- gm(y)
 }

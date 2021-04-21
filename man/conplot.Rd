@@ -2,7 +2,7 @@
 % Please edit documentation in R/conplot.R
 \name{conplot}
 \alias{conplot}
-\title{combination plot function}
+\title{Combination plot function}
 \usage{
 conplot(g, xlab = NA, ylab = NA, legend = NA)
 }

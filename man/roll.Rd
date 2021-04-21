@@ -2,7 +2,7 @@
 % Please edit documentation in R/roll.R
 \name{roll}
 \alias{roll}
-\title{adaptive buffered grey rolling model}
+\title{Adaptive buffered grey rolling model}
 \usage{
 roll(
   y,
@@ -30,8 +30,8 @@ roll(
 \item{stepsize}{rolling step}
 }
 \description{
-adaptive buffered grey rolling model
+Adaptive buffered grey rolling model
 }
 \examples{
-r<-roll(y)
+r <- roll(y)
 }
