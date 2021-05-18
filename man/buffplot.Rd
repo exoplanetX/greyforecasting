@@ -2,12 +2,16 @@
 % Please edit documentation in R/specialmethod.R
 \name{buffplot}
 \alias{buffplot}
-\title{compare and plot the data graph of buffer operator effect
-nr: number that displays arrows without}
+\title{Compare and plot the data graph of buffer operator effect}
 \usage{
 buffplot(x, buff = NULL, alpha = NA, add = FALSE, nr = 4)
 }
-\description{
-compare and plot the data graph of buffer operator effect
+\arguments{
+\item{nr}{}
+}
+\value{
 nr: number that displays arrows without
+}
+\description{
+Compare and plot the data graph of buffer operator effect
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/svwbo.R
 \name{svwbo}
 \alias{svwbo}
-\title{smooth buffer operator with variable weight}
+\title{Smooth buffer operator with variable weight}
 \usage{
 svwbo(y, alpha = 0.5)
 }
@@ -12,8 +12,8 @@ svwbo(y, alpha = 0.5)
 \item{alpha}{weight,alpha=0.5}
 }
 \description{
-smooth buffer operator with variable weight
+Smooth buffer operator with variable weight
 }
 \examples{
-format:y<-svwbo(y,alpha=0.5)
+format:y <- svwbo(y, alpha = 0.5)
 }

@@ -19,8 +19,8 @@ gm_1(y, ntest = NULL, term = 1, present = c(NA, NA), buff = NULL, alpha = NA)
 weighted background gm model and solved by auxillary parameters
 }
 \examples{
-g<-gm_1(y,term=3)
-g2<-gm_1(y,present=c("xlab","ylab"))
+g <- gm_1(y, term = 3)
+g2 <- gm_1(y, present = c("xlab", "ylab"))
 }
 \references{
 XU Ning, DANG Yao-guo, DING Song. Optimization method of background value in GM(1,1) model based on least error[J]. Control and Decision, 2015,30(12).

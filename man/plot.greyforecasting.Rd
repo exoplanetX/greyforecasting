@@ -2,17 +2,23 @@
 % Please edit documentation in R/plot.R
 \name{plot.greyforecasting}
 \alias{plot.greyforecasting}
-\title{generate fitting graph of grey forecasting model
-usage:
-g<-gm(y)
-plot(g)
-plot(g,forecast=TRUE)}
+\title{generate fitting graph of grey forecasting model}
 \usage{
 \method{plot}{greyforecasting}(x, location = "topleft", add = FALSE, forecast = FALSE)
 }
+\arguments{
+\item{x}{a greyforecasting object}
+
+\item{location}{determine legend location}
+
+\item{add}{undefined}
+
+\item{forecast}{}
+}
 \description{
 generate fitting graph of grey forecasting model
-usage:
+}
+\examples{
 g<-gm(y)
 plot(g)
 plot(g,forecast=TRUE)
