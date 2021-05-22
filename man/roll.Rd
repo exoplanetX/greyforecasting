@@ -2,7 +2,7 @@
 % Please edit documentation in R/roll.R
 \name{roll}
 \alias{roll}
-\title{Adaptive buffered grey rolling model}
+\title{adaptive buffered grey rolling model}
 \usage{
 roll(
   y,
@@ -11,13 +11,14 @@ roll(
   model = gm,
   buff = NA,
   intensity = NA,
-  present = c(NA, NA),
   piece = 4,
   stepsize = 1
 )
 }
 \arguments{
 \item{y}{data sequence}
+
+\item{ntest}{test data of outsample}
 
 \item{rollterm}{forecasting terms by extroplation}
 
@@ -30,8 +31,8 @@ roll(
 \item{stepsize}{rolling step}
 }
 \description{
-Adaptive buffered grey rolling model
+adaptive buffered grey rolling model
 }
 \examples{
-r <- roll(y)
+r<-roll(y)
 }

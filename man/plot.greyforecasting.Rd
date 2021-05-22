@@ -4,16 +4,7 @@
 \alias{plot.greyforecasting}
 \title{generate fitting graph of grey forecasting model}
 \usage{
-\method{plot}{greyforecasting}(x, location = "topleft", add = FALSE, forecast = FALSE)
-}
-\arguments{
-\item{x}{a greyforecasting object}
-
-\item{location}{determine legend location}
-
-\item{add}{undefined}
-
-\item{forecast}{}
+\method{plot}{greyforecasting}(md, location = "topleft", forecast = FALSE)
 }
 \description{
 generate fitting graph of grey forecasting model

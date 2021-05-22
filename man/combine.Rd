@@ -2,15 +2,12 @@
 % Please edit documentation in R/combine.r
 \name{combine}
 \alias{combine}
-\title{Combine multi-graphs based on matrix "layoutset"}
+\title{combine multi-graphs based on matrix "layoutset"
+matrix "layoutset" may consist of dimensions or facets sequences}
 \usage{
 combine(layoutset, ...)
 }
-\arguments{
-\item{layoutset}{matrix "layoutset" may consist of dimensions or facets sequences}
-
-\item{...}{#' @export}
-}
 \description{
-Combine multi-graphs based on matrix "layoutset"
+combine multi-graphs based on matrix "layoutset"
+matrix "layoutset" may consist of dimensions or facets sequences
 }

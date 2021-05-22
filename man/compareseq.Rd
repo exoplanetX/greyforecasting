@@ -2,19 +2,14 @@
 % Please edit documentation in R/compareseq.r
 \name{compareseq}
 \alias{compareseq}
-\title{Compare errors according to data point's name}
+\title{compare errors according to data point's name
+absolute errors:ae
+percentage absolute errors:pae}
 \usage{
 compareseq(y1, y2)
 }
-\arguments{
-\item{y1}{first data poinnt}
-
-\item{y2}{second data point}
-}
-\value{
+\description{
+compare errors according to data point's name
 absolute errors:ae
 percentage absolute errors:pae
-}
-\description{
-Compare errors according to data point's name
 }

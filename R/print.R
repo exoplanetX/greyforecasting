@@ -1,26 +1,23 @@
-#' Print grey forecasting model
-#'
-#' @param x
-#' a greyforecasting object
-#'
 #' @export
-#'
-print.greyforecasting <- function(x) {
+print.greyforecasting <- function(md){
   cat("<grey forecasting model>\n")
   cat("original data:\n")
-  print(x$original)
+  print(md$data)
   cat("fitted data<simulation>:\n")
-  print(x$simulation)
+  print(md$fitted)
   cat("forecast data<forecasts>:\n")
-  print(x$forecasts)
-  if (is.vector(x$p)) {
-    cat("process: parameter a <p['a']> is", x$p["a"], "b <p['b']> is", x$p["b"], "\n")
-  } else {
-    if (is.data.frame(x$p)) {
-      cat("parameters in each section:\n")
-      print(x$p)
-    }
-  }
-
-  cat("prediction term:", x$term)
+  print(md$forecasts)
+  cat("parameter values<parameter>:\n")
+  print(md$parameter)
+  # if(is.vector(md$parameter)){
+  #   cat("parameter a  is",md$parameter['a'],"b is",md$parameter['b'],"\n")
+  # }else{
+  #   if(is.data.frame(md$parameter)){
+  #     cat("parameters in each section:\n")
+  #     print(md$parameter)
+  #   }
+  # }
+  cat("insample mape: ",md$mape.in,"\n")
+  cat("outsample mape: ",md$mape.out,"\n")
+  cat("prediction term:",md$term)
 }

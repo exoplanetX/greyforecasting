@@ -2,19 +2,17 @@
 % Please edit documentation in R/coef.R
 \name{coef.greyforecasting}
 \alias{coef.greyforecasting}
-\title{Fetch the parameters in grey forecasting object}
+\title{fetch the parameters in grey forecasting object}
 \usage{
-\method{coef}{greyforecasting}(object)
+\method{coef}{greyforecasting}(x)
 }
 \arguments{
-\item{object}{a greyforecasting object}
+\item{y}{data sequence}
 }
 \description{
-Fetch the parameters in grey forecasting object
+fetch the parameters in grey forecasting object
 }
 \examples{
 g<-gm(y)
-
 coef(g)
-
 }

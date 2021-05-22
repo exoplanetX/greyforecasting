@@ -4,21 +4,20 @@
 \alias{gm_2}
 \title{optimal gm model with background and response formula}
 \usage{
-gm_2(y, ntest = NULL, term = 1, present = c(NA, NA), buff = NULL, alpha = NA)
+gm_2(y, ntest = NULL, term = 1, buff = NULL, alpha = NA)
 }
 \arguments{
-\item{present}{character vector containing xlab and ylab.}
+\item{y}{data sequence.}
 
 \item{buff}{buffer operator used for original data.}
 
 \item{alpha}{coefficient in buffer operator if used.}
 
-\item{x}{data sequence.}
+\item{present}{character vector containing xlab and ylab.}
 }
 \description{
 weighted background gm model and solved by auxillary parameters
 }
 \examples{
-g <- gm_1(y, term = 3)
-g2 <- gm_1(y, present = c("xlab", "ylab"))
+g<-gm_1(y,term=3)
 }

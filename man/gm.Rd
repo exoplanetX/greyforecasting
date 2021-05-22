@@ -4,25 +4,16 @@
 \alias{gm}
 \title{classic grey forecasting model, GM(1,1)}
 \usage{
-gm(
-  y,
-  ntest = NULL,
-  term = 1,
-  present = c(NA, NA),
-  bg = background,
-  buff = NULL,
-  alpha = NA,
-  ...
-)
+gm(y, ntest = NULL, term = 1, bg = background, buff = NULL, alpha = NA, ...)
 }
 \arguments{
-\item{present}{character vector containing xlab and ylab.}
+\item{term}{length of extropotation data, forecasting data.}
 
 \item{bg}{background formula.}
 
 \item{buff}{buffer operator used for original data.}
 
-\item{alpha}{coefficient in buffer operator if used.}
+\item{alpha}{coefficient of buffer operator if used.}
 
 \item{x}{data sequence.}
 }
@@ -30,5 +21,5 @@ gm(
 model sequential data with GM(1,1) model
 }
 \examples{
-g <- gm(y)
+g<-gm(y)
 }

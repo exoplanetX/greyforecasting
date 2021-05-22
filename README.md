@@ -22,6 +22,8 @@ install_github("exoplanetX/greyforecasting")
 ~~~{r}
 library(greyforecasting)
 ~~~
+## 更新说明
+近期对代码进行了一些修补，删除了一些无用参数，增加了verhulst等模型，加入了数据导出到excel文件功能。
 ## 灰色预测程序包
 
 程序包中的代码使用S3类创建，与R语言其他模型格式保持一致。
@@ -34,14 +36,18 @@ greyforecasting包中的实用函数主要有：
 模型类： 
 
 - gm： 经典gm模型以及在GM(1,1)模型基础上拓展的模型 
+- dgm: 离散灰预测模型
 - gm_1: 优化背景值公式的灰色模型，参数采用辅助参数方式生成 
 - gm_2: 优化背景值与响应式公式的灰色模型，参数采用辅助参数生成 
+- fgm:  分数阶GM(1,1)模型
 - roll： 滚动机制下的灰色模型 
 - abgr: 缓冲适应性灰色预测模型框架，默认使用GM(1,1)、经典缓冲算子以及滚动机制
 算子类： 
 
 - operator: 经典弱化缓冲算子 
 - svwbo： 平滑变权缓冲算子 
+- ago: 累加生成算子，默认阶数参数r=1
+- iago: 与ago对应的累减还原算子，默认r=1
 
 背景值： 
 
@@ -78,6 +84,7 @@ g<-gm(y,ntest=1) #对y建模，其中最后1个数据留作验证数据
 ~~~
 coef(g)
 ~~~ 
+
 另外，直接计算y的灰色预测数据可以使用gmprocess函数
 
 ~~~{r}
@@ -161,7 +168,21 @@ plot(model3,forecast=TRUE) #做出model3拟合图，图中包含预测部分
 ~~~{r}
 help(plot.greyforecasting) 
 ~~~ 
+模型数据存入excel文件当中
+~~~{r}
+md=gm(y,term=2)
+gssave(md) #默认存储路径为本地用户文件夹
+~~~
 
+## 提供了一些测试数据
+~~~
+-y :增长序列，中国温室气体排放数据，2000-2014年。
+-yr :递减序列，由y生成的倒置序列，用于检验递减序列的建模效果。
+-ghg :data.frame格式数据，国家统计局公布的中国能耗相关排放数据。
+-ghg2 :ghg之后的校正数据。
+-owners :中国机动车保有量数据，2006-2010。
+-logiscost :中国食品冷链物流需求量，2014-2019。
+~~~
 ### 未完待续......
 The package now is  a brief tool in R, and plans to embrace all the algorithms of grey forecast theory.
 Any problems please contact nuaa_xuning@163.com 

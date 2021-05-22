@@ -2,18 +2,18 @@
 % Please edit documentation in R/svwbo.R
 \name{svwbo}
 \alias{svwbo}
-\title{Smooth buffer operator with variable weight}
+\title{smooth buffer operator with variable weight}
 \usage{
-svwbo(y, alpha = 0.5)
+svwbo(x, alpha = 0.5)
 }
 \arguments{
-\item{y}{original data}
-
 \item{alpha}{weight,alpha=0.5}
+
+\item{y}{original data}
 }
 \description{
-Smooth buffer operator with variable weight
+smooth buffer operator with variable weight
 }
 \examples{
-format:y <- svwbo(y, alpha = 0.5)
+format:y<-svwbo(y,alpha=0.5)
 }

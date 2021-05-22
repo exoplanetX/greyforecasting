@@ -1,59 +1,61 @@
 #' classic grey forecasting model, GM(1,1)
 #'
 #' model sequential data with GM(1,1) model
-#' @param x data sequence.
-#' @param present character vector containing xlab and ylab.
-#' @param bg background formula.
-#' @param buff buffer operator used for original data.
-#' @param alpha coefficient in buffer operator if used.
-#'
 #' @export
 #' @examples
-#' g <- gm(y)
-gm <- function(y, ntest = NULL, term = 1, present = c(NA, NA), bg = background, buff = NULL, alpha = NA, ...) {
-  if (is.null(names(y))) {
+#' g<-gm(y)
+#' @param x data sequence.
+#' @param term length of extropotation data, forecasting data.
+#' @param bg background formula.
+#' @param buff buffer operator used for original data.
+#' @param alpha coefficient of buffer operator if used.
+
+gm<-function(y,ntest=NULL,term=1,bg=background,buff=NULL,alpha=NA,...){
+#--原始数据截取ntest部分，生成建模序列x
+  if(is.null(names(y))){
     names(y) <- 1:length(y)
   }
-  if (is.numeric(ntest)) {
-    x <- y[1:(length(y) - trunc(ntest))]
-    testvalue <- y[(length(x) + 1):length(y)]
-  } else {
-    x <- y
-    testvalue <- NULL
+  if(is.numeric(ntest)) {
+    x<-y[1:(length(y)-trunc(ntest))]
+    test<-y[(length(x)+1):length(y)]
+  }else{
+    x<-y
+    test<-NULL
   }
+  ny=length(y) #原始序列长度
+  n=length(x) #建模序列长度
+  nf=n+term #拟合+预测序列长度
+  if(nf<ny){
+    stop("ntest is too small or term is too big")
+  }
+##--缓冲处理，生成建模序列x0
+  if(is.function(buff)) {
+    if(is.na(alpha)) x0 <- buff(x) else x0 <- buff(x, alpha = alpha)
+    }else{
+      x0<-x
+    }
+##--建模处理，生成参数向量p['a']，p['b']
+  x1=cumsum(x0)
+  p=LSE(x0[2:n],-bg(x1),ones(n-1))
+##--生成响应式序列ftd_x0和ftd_x1
+  trf_x0=function(k) ((x0[1]-p['b']/p['a'])*(1-exp(p['a']))*exp(-p['a']*(k-1)))
+  fitted_x0<-trf_x0(1:n)
+  fitted_x0[1]<-x0[1]
+  names(fitted_x0)<-names(x)
+  forecasts<-trf_x0((n+1):nf)
+  names(forecasts)<-as.numeric(names(x0)[n])+1:term
 
-  if (length(present) == 1) {
-    present <- c(NA, present)
-  } else {
-    present <- c(present[1], present[2])
-  }
-
-  if (is.function(buff)) {
-    y <- buff(x, alpha = alpha)
-  } else {
-    y <- x
-  }
-  p <- lm(y[2:length(y)] ~ I(-bg(y)))$coefficients
-  names(p) <- c("b", "a")
-  trf <- function(k) ((y[1] - p["b"] / p["a"]) * (1 - exp(p["a"])) * exp(-p["a"] * (k - 1)))
-  ftd <- trf(1:length(y))
-  ftd[1] <- y[1]
-  names(ftd) <- names(x)
-  extroplation <- trf(length(y) + 1:term)
-  names(extroplation) <- as.numeric(names(y)[length(y)]) + 1:term
-  obj <- list(
-    original = x,
-    testvalue = testvalue,
-    description = data.frame(xlab = present[1], ylab = present[2]),
-    background = bg,
-    parameter = p,
-    response = trf,
-    simulation = ftd,
-    term = term,
-    forecasts = extroplation,
-    mape.insample = mape(y, ftd)
+  obj<-list(
+    data       = x,
+    test       = test,
+    parameter  = data.frame(a=p['a'],b=p['b'],ax=0.5),
+    fitted     = fitted_x0[1:n],
+    term       = term,
+    forecasts  = forecasts,
+    mape.in    = mape(x0,fitted_x0),
+    mape.out   = ifelse(is.null(ntest), NA, mape(test,forecasts[1:ntest])),
+    method     = list(class="gm",buff=buff,alpha=alpha)
   )
-
-  class(obj) <- "greyforecasting"
+  class(obj)<-"greyforecasting"
   obj
 }

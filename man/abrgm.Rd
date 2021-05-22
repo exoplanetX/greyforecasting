@@ -2,8 +2,7 @@
 % Please edit documentation in R/abrgm.R
 \name{abrgm}
 \alias{abrgm}
-\title{Adaptive buffered grey rolling model
-generate ABGR model, computation results and its fitting graphes}
+\title{adaptive buffered grey  rolling model}
 \usage{
 abrgm(y = y, ntest = NULL, model = gm, buff = operator, term = 1)
 }
@@ -17,9 +16,8 @@ abrgm(y = y, ntest = NULL, model = gm, buff = operator, term = 1)
 \item{term}{forecasting term by extroplation}
 }
 \description{
-Adaptive buffered grey rolling model
 generate ABGR model, computation results and its fitting graphes
 }
 \examples{
-abrgm(dataset = y, model = gm_1, buff = operator, term = 3)
+mymodel(dataset=y,model=gm_1,buff=operator,term=3)
 }

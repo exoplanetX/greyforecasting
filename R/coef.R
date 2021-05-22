@@ -1,16 +1,10 @@
-#' Fetch the parameters in grey forecasting object
-#'
-#' @param object
-#' a greyforecasting object
-#'
-#' @export
-#'
+#' fetch the parameters in grey forecasting object
+#' @param y data sequence
 #' @examples
 #' g<-gm(y)
-#'
 #' coef(g)
-#'
-coef.greyforecasting <- function(object) {
+#' @export
+coef.greyforecasting <- function(x){
   cat("parameters a and b are:\n")
-  print(object$parameter)
+  print(x$parameter)
 }
