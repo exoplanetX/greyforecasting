@@ -6,6 +6,13 @@
 \usage{
 \method{plot}{greyforecasting}(md, location = "topleft", forecast = FALSE)
 }
+\arguments{
+\item{md}{'greyforecasting' object.}
+
+\item{location}{legend position,'topleft','topright'.}
+
+\item{forecast}{add the forecast data in plot.}
+}
 \description{
 generate fitting graph of grey forecasting model
 }
