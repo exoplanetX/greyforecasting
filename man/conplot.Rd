@@ -4,14 +4,25 @@
 \alias{conplot}
 \title{combination plot function}
 \usage{
-conplot(g, xlab = NA, ylab = NA, legend = NA)
+conplot(
+  g,
+  xlab = "x-axis",
+  ylab = "y-axis",
+  location = "topleft",
+  legend = NA,
+  forecast = FALSE
+)
 }
 \arguments{
-\item{g}{grey model, a list variable containing models}
+\item{g}{grey model list, a list variable containing models.}
 
-\item{xlab}{label in x-axis}
+\item{xlab}{label in x-axis.}
 
-\item{ylab}{label in y-axis}
+\item{ylab}{label in y-axis.}
+
+\item{location}{legend location.}
+
+\item{forecast}{present the forecasted values in plot.}
 }
 \description{
 plot grey models in single graph

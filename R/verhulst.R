@@ -56,7 +56,7 @@ verhulst <-  function(y, ntest = NULL, term = 1, bg = background, buff = NULL,
       forecasts  = forecasts,
       mape.in    = mape(x1,fitted_x1[1:n]),
       mape.out   = ifelse(is.null(ntest), NA, mape(test,forecasts[1:ntest])),
-      method     = list(class="gm",buff=buff,alpha=alpha)
+      method     = list(class="gm",mdname="Verhulst",buff=buff,alpha=alpha)
     )
     class(obj)<-"greyforecasting"
     obj

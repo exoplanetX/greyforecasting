@@ -47,7 +47,7 @@ fgm<-function(y,ntest=NULL,term=1,r=1,bg=background,buff=NULL,alpha=NA,...){
     forecasts  = forecasts,
     mape.in    = mape(x0,yy),
     mape.out   = ifelse(is.null(ntest), NA, mape(test,forecasts[1:ntest])),
-    method     = list(class="gm",buff=buff,alpha=alpha)
+    method     = list(class="gm",mdname="Fractional GM(1,1)",buff=buff,alpha=alpha)
   )
 
   class(obj)<-"greyforecasting"

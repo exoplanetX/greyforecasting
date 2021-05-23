@@ -4,7 +4,13 @@
 \alias{plot.greyforecasting}
 \title{generate fitting graph of grey forecasting model}
 \usage{
-\method{plot}{greyforecasting}(md, location = "topleft", forecast = FALSE)
+\method{plot}{greyforecasting}(
+  md,
+  location = "topleft",
+  forecast = FALSE,
+  xlab = "x-axis",
+  ylab = "y-axis"
+)
 }
 \arguments{
 \item{md}{'greyforecasting' object.}

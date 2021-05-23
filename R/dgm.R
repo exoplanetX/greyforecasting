@@ -66,7 +66,7 @@ dgm<-function(y,ntest=NULL,term=1,buff=NULL,alpha=NA){
     forecasts =forecasts,
     mape.in   = mape(x0,fitted_x0[1:n]),
     mape.out  = ifelse(is.null(ntest), NA, mape(test,forecasts[1:ntest])),
-    method     = list(class="dgm",buff=buff,alpha=alpha)
+    method     = list(class="dgm",mdname="DGM(1,1)",buff=buff,alpha=alpha)
   )
   class(obj)<-"greyforecasting"
   obj

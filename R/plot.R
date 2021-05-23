@@ -8,7 +8,8 @@
 #' g<-gm(y)
 #' plot(g)
 #' plot(g,forecast=TRUE)
-plot.greyforecasting <- function(md,location="topleft",forecast=FALSE){
+plot.greyforecasting <- function(md,location="topleft",forecast=FALSE,
+                                 xlab='x-axis',ylab='y-axis'){
   ######### determine x and y axis range ######
   n<-length(md$fitted)
   piece<-length(md$data)-n
@@ -43,13 +44,13 @@ plot.greyforecasting <- function(md,location="topleft",forecast=FALSE){
   }
 
   #----- plot original data -----#
-  plot(xdimo,ydimo, ylim = c(ymin*0.9,ymax*1.1), xlim = c(xmin,xmax),pch=1,col="blue",type="b")
+  plot(xdimo,ydimo, ylim = c(ymin*0.9,ymax*1.1),xlab=xlab,ylab=ylab,
+       xlim = c(xmin,xmax),pch=1,col="blue",type="b")
   #----- plot fitting data -------#
   points(xdims,ydims, pch=2,col="red",type="b")
-  legend(location,legend=c("original data","fitted data"),pch=c(1,2),lty=c(1,5),col=c("blue","red"),bty="n")
+  legend(location,legend=c("original data",md$method$mdname),pch=c(1,2),lty=c(1,5),col=c("blue","red"),bty="n")
   if(forecast==TRUE){
     abline(v=xdimo[piece+n]+0.5,lty=5,col="blue")
-    #text(xdimo[piece+n]+1.8,ymin,"out-sample",cex=0.9)
     text(xdimo[piece+n]-0.7,ymin,"in-sample",cex=0.9)
   }
 }

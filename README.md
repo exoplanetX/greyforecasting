@@ -23,7 +23,15 @@ install_github("exoplanetX/greyforecasting")
 library(greyforecasting)
 ~~~
 ## 更新说明
-近期对代码进行了一些修补，删除了一些无用参数，增加了verhulst等模型，加入了数据导出到excel文件功能。
+2021.5.23 修订了conplot——被遗忘了两年的函数，同时连带修订了plot的参数，可以增加xlab和ylab标题，但如果想在标题中用非ASCII字符，例如中文，推荐用如下工具：
+
+~~~{r}
+install.packages("showtext")
+library("showtext")
+showtext_auto()
+~~~
+
+2021.5.22 近期对代码进行了一些修补，删除了一些无用参数，增加了verhulst等模型，加入了数据导出到excel文件功能。
 ## 灰色预测程序包
 
 程序包中的代码使用S3类创建，与R语言其他模型格式保持一致。
@@ -39,9 +47,9 @@ greyforecasting包中的实用函数主要有：
 - dgm: 离散灰预测模型
 - gm_1: 优化背景值公式的灰色模型，参数采用辅助参数方式生成 
 - gm_2: 优化背景值与响应式公式的灰色模型，参数采用辅助参数生成 
-- fgm:  分数阶GM(1,1)模型
-- verhulst: verhulst模型
-- pgm:  幂模型，默认参数r=2，即与verhulst相同。r过大会导致计算出现奇异矩阵。
+- fgm:  分数阶GM(1,1)模型。
+- verhulst: verhulst模型。
+- pgm:  幂模型，默认参数r=2，即与verhulst相同。参数r需要手动调整，过大会导致计算出现奇异矩阵。
 - roll： 滚动机制下的灰色模型 
 - abgr: 缓冲适应性灰色预测模型框架，默认使用GM(1,1)、经典缓冲算子以及滚动机制
 
@@ -88,7 +96,7 @@ g<-gm(y,ntest=1,term=2) #对y建模，生成2期预测数据，样本内1个数�
 coef(g)
 ~~~ 
 
-另外，直接计算y的灰色预测数据可以使用gmprocess函数
+另外，直接计算y的灰色预测数据可以使用gmprocess函数。目前gmprocess推荐作为过渡函数，在二次开发时候方便使用，建模可以直接使用模型函数。
 
 ~~~{r}
 y #案例数据
@@ -165,8 +173,16 @@ coef(model3) #提取model3的参数估计值
 其中plot作图函数参数较多，列举几个重要参数： 
 ~~~{r} 
 model3<-gm(y,ntest=1,term=1) #建立GM(1,1)模型，末尾预留1期测试数据，预测1期
-plot(model3,forecast=TRUE) #做出model3拟合图，图中包含预测部分
+plot(model3,xlab="year",forecast=TRUE) #做出model3拟合图，图中包含预测部分
 ~~~ 
+
+conplot函数将多个模型放入同一张图内做对比，格式类似plot函数
+~~~{r}
+md1=gm(y)
+md2=dgm(y)  #对比模型只考虑的等长拟合和预测的情况
+md3=verhulst(y)
+conplot(list(md1,md2,md3),forecast=TRUE) #模型以列表变量形式放入
+~~~
 其他参数请参考
 ~~~{r}
 help(plot.greyforecasting) 
@@ -176,6 +192,18 @@ help(plot.greyforecasting)
 md=gm(y,term=2)
 gssave(md) #默认存储路径为本地用户文件夹
 ~~~
+
+## 模型参数的简要说明
+
+-data：建模用的原始数据。
+-test: 原始数据中末尾留作检验的测试数据。
+-parameter: 灰预测模型的参数，a 增长系数，b 灰做用量，ax 背景值组合参数(部分采用优化技术的模型有该参数，经典GM(1,1)模型等效设置为0.5)。
+-fitted: 拟合数据。
+-term: 外推预测长度。
+-forecasts: 预测值。
+-mape.in: 拟合数据的平均相对误差率。
+-mape.out: 预测检验数据的平均相对误差率(仅当设置了ntest检验数据参数时生成)
+-method:包含了模型所用的方法、名称等用于识别的属性。
 
 ## 提供了一些测试数据
 ~~~
