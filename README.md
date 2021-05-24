@@ -234,12 +234,12 @@ gssave(md) #默认存储路径为本地用户文件夹
 
 ## 提供了一些测试数据
 
--y :增长序列，中国温室气体排放数据，2000-2014年。
--yr :递减序列，由y生成的倒置序列，用于检验递减序列的建模效果。
--ghg :data.frame格式数据，国家统计局公布的中国能耗相关排放数据。
--ghg2 :ghg之后的校正数据。
--owners :中国机动车保有量数据，2006-2010。
--logiscost :中国食品冷链物流需求量，2014-2019。
+- y :增长序列，中国温室气体排放数据，2000-2014年。
+- yr :递减序列，由y生成的倒置序列，用于检验递减序列的建模效果。
+- ghg :data.frame格式数据，国家统计局公布的中国能耗相关排放数据。
+- ghg2 :ghg之后的校正数据。
+- owners :中国机动车保有量数据，2006-2010。
+- logiscost :中国食品冷链物流需求量，2014-2019。
 
 ### 未完待续......
 The package now is  a brief tool in R, and plans to embrace all the algorithms of grey forecast theory.
