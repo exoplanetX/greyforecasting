@@ -1,14 +1,14 @@
 Package: greyforecasting
 Type: Package
 Title: A package for grey systems forecasting methods
-Version: 0.1.3
+Version: 0.1.4
 Authors@R: 
     c(person(given = "Ning",
              family = "Xu",
              role = c("aut", "cre"),
              email = "nuaa_xuning@163.com"))
-Description: tools for grey systems forecasting methods
-License: What license is it under?
+Description: This package provide a series of tools for grey forecasting methods, one of the components of grey system theory. Functions such as gm(), dgm() complete all computation and retrive a S3 variable containing the model results, the class is named as 'greyforecasting'. In addtion, plot() and summary() functions are used to process the model variable. 
+License: MIT
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1
