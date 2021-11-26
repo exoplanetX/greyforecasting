@@ -38,6 +38,8 @@ pgm <-  function(y,r=2,ntest = NULL, term = 1, bg = background, buff = NULL,
   x0=iago(x1)
   z1=bg(x1)
   p=LSE(x0[2:n],-z1,z1^r)
+  p=lm(x0[2:n]~I(-bg(x1)))$coefficients
+  names(p)=c('b','a')
   ##--响应式
   #trf_x1=function(k) p['a']*x1[1]/(p['b']*x1[1]+(p['a']-p['b']*x1[1])*exp(p['a']*(k-1)))
   trf_x1=function(k) (p['b']/p['a']+ (x1[1]^(1-r)-p['b']/p['a'])*exp(-(1-r)*p['a']*(k-1)))^(1/(1-r))
@@ -57,7 +59,7 @@ pgm <-  function(y,r=2,ntest = NULL, term = 1, bg = background, buff = NULL,
     forecasts  = forecasts,
     mape.in    = mape(x1,fitted_x1[1:n]),
     mape.out   = ifelse(is.null(ntest), NA, mape(test,forecasts[1:ntest])),
-    method     = list(class="gm",mdname="Power GM(1,1)",buff=buff,alpha=alpha)
+    method     = list(name="Power GM(1,1)",class="gm",buff=buff,alpha=alpha)
   )
   class(obj)<-"greyforecasting"
   obj

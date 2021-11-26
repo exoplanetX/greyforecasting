@@ -36,7 +36,9 @@ gm<-function(y,ntest=NULL,term=1,bg=background,buff=NULL,alpha=NA,...){
     }
 ##--建模处理，生成参数向量p['a']，p['b']
   x1=cumsum(x0)
-  p=LSE(x0[2:n],-bg(x1),ones(n-1))
+  #p=LSE(x0[2:n],-bg(x1),ones(n-1))
+  p=lm(x0[2:n]~I(-bg(x1)))$coefficients
+  names(p)=c('b','a')
 ##--生成响应式序列ftd_x0和ftd_x1
   trf_x0=function(k) ((x0[1]-p['b']/p['a'])*(1-exp(p['a']))*exp(-p['a']*(k-1)))
   fitted_x0<-trf_x0(1:n)
@@ -54,7 +56,7 @@ gm<-function(y,ntest=NULL,term=1,bg=background,buff=NULL,alpha=NA,...){
     forecasts  = forecasts,
     mape.in    = mape(x0,fitted_x0),
     mape.out   = ifelse(is.null(ntest), NA, mape(test,forecasts[1:ntest])),
-    method     = list(class="gm",mdname="GM(1,1)",buff=buff,alpha=alpha)
+    method     = list(name="GM(1,1)",class="gm",mdname="GM(1,1)",buff=buff,alpha=alpha)
   )
   class(obj)<-"greyforecasting"
   obj

@@ -89,7 +89,7 @@ roll <- function(y,ntest=NULL,rollterm=1,model=gm,buff=NA,intensity=NA,piece=4,s
     term        = rollterm,
     mape.in     = fitness,  #mape(x[(piece+1):n],simulation[1:(length(simulation)-1)]),
     mape.out    = ifelse(is.null(ntest), NA, mape(test,simulation[rollnumber+0:(rollterm-1)])),
-    method      = list(class='roll',piece=piece,stepsize=stepsize,buff=buff)
+    method      = list(name="grey rolling model",class='roll',piece=piece,stepsize=stepsize,buff=buff)
   )
   class(obj)<-c("greyforecasting")
   return(obj)
