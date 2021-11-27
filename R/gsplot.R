@@ -5,8 +5,16 @@
 #' @param lastpoint the cut line of x axis for fitting presentation.
 #' @param xintercept divide line of insample part and forecasting part.
 #' @param legend a charactor vector for model's name.
+#' @param point logical parameter, TRUE: present points;FALSE: hide the points.
+#' @param pointsize size of the data point.
+#' @param linesize siez of the lines.
+#' @param legend customized position of the legend,vector containing two elements.
+#' @param save logical parameter, chooing TRUE will save the figure as pdf file.
+#' @param n_break breaks of x axis, default will use breaks_pretty() in package scales.
 
-gsplot <- function(...,lastpoint=NA,xintercept=NA,legend=NA,save=F,n_breaks=NA){
+gsplot <- function(...,lastpoint=NA,xintercept=NA,point=TRUE,
+                   pointsize=1.2,linesize=0.9,legend=NA,
+                   save=FALSE,n_breaks=NA){
   require(ggplot2)
   require(ggthemes)
   require(tibble)
@@ -18,7 +26,6 @@ gsplot <- function(...,lastpoint=NA,xintercept=NA,legend=NA,save=F,n_breaks=NA){
 
   md=list(...)
   num=length(md)
-  #xintercept=2018
 
   originaldata=c(md[[1]]$data,md[[1]]$test)
   solution=data.frame(
@@ -52,20 +59,22 @@ gsplot <- function(...,lastpoint=NA,xintercept=NA,legend=NA,save=F,n_breaks=NA){
     solution=solution %>% filter(year<=lastpoint)
   }
   #绘图
-
+  shapevalue=20+1:(num+1)
   p=ggplot(solution,aes(year,value,group=model))+
-    geom_line(aes(linetype=model,color=model),size=0.9)+
-    #geom_vline(aes(xintercept=xintercept),linetype=2)+
-    geom_point(aes(shape=model),size=1.2,fill="white")+
-    scale_shape_manual(values = c(21,22,23,24))+
-    theme_classic()+
-    theme(legend.position = c(0.15,0.8))
-
+    geom_line(aes(linetype=model,color=model),size=linesize)
+  if(point==T){
+    p=p+geom_point(aes(shape=model),size=pointsize,fill="white")+
+      scale_shape_manual(values = shapevalue) #c(21,22,23,24))
+  }
+    p=p+theme_classic()+
+      theme(legend.position = c(0.15,0.8))
+  #添加横坐标标签
   if(!is.na(n_breaks)){
     p=p+scale_x_continuous(breaks = breaks_pretty(n_breaks))
   }else{
     p=p+scale_x_continuous(breaks = breaks_pretty())
   }
+  #添加拟合和预测区域的分割线
   if(is.numeric(xintercept)){
     ylevel=min(md[[1]]$data)+0.1*(max(md[[1]]$data)-min(md[[1]]$data))
     p=p+geom_vline(aes(xintercept=xintercept),linetype=2)+
