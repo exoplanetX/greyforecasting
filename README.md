@@ -7,9 +7,7 @@
 推荐使用工具：
 - R语言[https://cloud.r-project.org/](https://cloud.r-project.org/ "R语言")
 - Rstudio[https://www.rstudio.com/products/rstudio/download/](https://www.rstudio.com/products/rstudio/download/ "Rstudio")  
-先安装R再安装Rstudio，R是计算平台，Rstudio是一个IDE工具，有点像辅助界面之类的工具。在Rstudio的环境中加载工具包  
-
-首先，下载devtools包并在环境中加载
+在Rstudio的环境中加载工具包。首先，下载devtools包并在环境中加载
 
 ~~~{r}
 install.packages("devtools")
