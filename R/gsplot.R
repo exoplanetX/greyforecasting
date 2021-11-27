@@ -82,7 +82,7 @@ gsplot <- function(...,lastpoint=NA,xintercept=NA,point=TRUE,
       annotate("text",x=xintercept+3,y=ylevel,label="预测数据")
   }
   if(save==T){
-    ggsave(filename = "ceadsforecast.pdf",dpi=600)
+    ggsave(filename = "modelplot.pdf",dpi=600)
   }
   return(p)
 }
