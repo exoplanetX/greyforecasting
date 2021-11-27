@@ -101,8 +101,6 @@ greyforecasting包中的实用函数主要有：
 help(gm) #查看gm函数的功能、格式和使用帮助
 ~~~
 
-## 创建基本GM(1,1)模型
-关于模型的具体参数设置可以查看相关帮助文件
 ## 灰色预测基本模型
 
 1. GM(1,1)模型的计算方法
@@ -140,6 +138,14 @@ gmprocess()函数是GM(1,1)模型计算的集成函数，参数包括三个：
 g <- gm(y)
 plot(g) #输出模型g的拟合图
 plot(g,forecast=TRUE) #拟合图中包含预测部分
+~~~
+
+另外，用ggplot2绘图系统做了对应散点图，例
+
+~~~{r}
+g1 <- gm(y)
+g2 <- dgm(y)
+gsplot(g1,g2,save=TRUE, n_breaks=10) # n_breaks: x轴标签数量,save:存储为modelplot.pdf,dpi=600的图片文件
 ~~~
 
 3. 缓冲算子
