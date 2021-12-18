@@ -8,10 +8,10 @@
 #' @param term forecasting term by extroplation
 #' @examples
 #' mymodel(dataset=y,model=gm_1,buff=operator,term=3)
-abgr<- function(y=y,ntest=NULL,model=gm,buff=operator,term=1){
+abgr<- function(y=y,ntest=NULL,model=gm,buff=operator,piece=4,term=1){
   #y<-dataset
   f<- function(r){
-    md<-roll(y=y,ntest=ntest,model=model,buff=buff,intensity=r,rollterm=term)
+    md<-roll(y=y,ntest=ntest,model=model,piece=piece,buff=buff,intensity=r,rollterm=term)
     md$mape.in
   }
   r<-optimize(f,c(0.01,1))
